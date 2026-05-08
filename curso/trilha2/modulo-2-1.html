@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 2.1 — O Despertar: A economia da alavancagem | PROF 2030</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } } }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37, 99, 235, 0.12); }
+    html:not(.dark) .bg-blue-500\/10 { background-color: rgba(37, 99, 235, 0.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37, 99, 235, 0.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185, 28, 28, 0.08); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185, 28, 28, 0.25); }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-900\/20 { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5, 150, 105, 0.25); }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🧭</span>
+            <span class="font-bold text-lg hidden sm:inline">PROF 2030</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Comunicar</span></a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-blue-400 bg-blue-500/10"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Empreender</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Liderar</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-blue-400">Início</a>
+      <span>/</span>
+      <a href="index.html" class="hover:text-blue-400">Trilha 2</a>
+      <span>/</span>
+      <span class="text-blue-400">Módulo 2.1</span>
+    </div>
+  </nav>
+  <header class="bg-gradient-to-br from-blue-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-semibold rounded-full mb-4">MÓDULO 2.1</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">⚖️ O Despertar — A economia da alavancagem</h1>
+      <p class="text-lg text-neutral-300 max-w-3xl mb-4">As 5 alavancas de Naval Ravikant: capital, trabalho, código, mídia e IA. Por que essa última é a mais democrática da história.</p>
+      <blockquote class="border-l-4 border-blue-500/50 pl-4 italic text-neutral-400 max-w-3xl">"Leverage means building systems that continue producing value after the initial setup."<span class="block text-sm mt-1 not-italic text-neutral-500">— Naval Ravikant</span></blockquote>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">~45</div><div class="text-xs text-neutral-400">Minutos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">Iniciante</div><div class="text-xs text-neutral-400">Nível</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">Despertar</div><div class="text-xs text-neutral-400">Tipo</div></div>
+      </div>
+    </div>
+  </header>
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">⚖️ As 5 alavancas (Naval)</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Naval Ravikant resumiu como a humanidade gera riqueza em cinco alavancas. Alavanca é, na prática, <strong class="text-blue-400">produzir muito mais do que sua hora vale</strong>. Quem trabalha por hora troca tempo por dinheiro com teto rígido. Quem opera alavancas <strong class="text-blue-400">desacopla output de input</strong> — o sistema continua entregando enquanto você dorme. As alavancas <strong class="text-blue-400">compõem</strong>: capital amplifica trabalho, código amplifica capital, mídia amplifica código, IA amplifica todas.</p>
+
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4">📐 Conceito-chave: alavanca = output ÷ input</h3>
+        <p class="text-neutral-300 mb-4">Sem alavanca, dobrar o resultado exige dobrar as horas. Com alavanca, o resultado cresce sem esforço proporcional. É isso que separa o assalariado do operador.</p>
+        <ul class="space-y-2 text-neutral-300">
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>Trabalho linear:</strong> 1h trabalhada = 1h paga. Teto: 24h por dia.</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>Trabalho alavancado:</strong> 1h investida em sistema = N horas de output enquanto o sistema rodar.</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>Composto:</strong> sistema novo se apoia no anterior. A pilha cresce, o esforço marginal cai.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">📈 Capital, trabalho, código, mídia</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">As quatro alavancas clássicas. <strong class="text-blue-400">Capital e trabalho</strong> exigem permissão — você precisa convencer banco ou contratar gente. <strong class="text-blue-400">Código e mídia</strong> são permissionless: você pode escrever um app ou postar um vídeo agora, sem pedir nada. E têm <strong class="text-blue-400">custo marginal próximo de zero</strong> — replicar mais um usuário não custa quase nada.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6">
+          <h4 class="font-bold text-blue-400 mb-4">🔓 Permissionless (código + mídia)</h4>
+          <ul class="space-y-2 text-neutral-300">
+            <li class="flex items-start space-x-2"><span class="text-blue-400">•</span><span>Você decide e publica hoje</span></li>
+            <li class="flex items-start space-x-2"><span class="text-blue-400">•</span><span>Replica infinito sem custo extra</span></li>
+            <li class="flex items-start space-x-2"><span class="text-blue-400">•</span><span>Roda 24/7 sem você presente</span></li>
+          </ul>
+        </div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <h4 class="font-bold text-neutral-100 mb-4">🔒 Permissionada (capital + trabalho)</h4>
+          <ul class="space-y-2 text-neutral-300">
+            <li class="flex items-start space-x-2"><span class="text-neutral-400">•</span><span>Capital: precisa de investidor ou banco</span></li>
+            <li class="flex items-start space-x-2"><span class="text-neutral-400">•</span><span>Trabalho: precisa contratar e gerenciar</span></li>
+            <li class="flex items-start space-x-2"><span class="text-neutral-400">•</span><span>Custo marginal alto (cada unidade extra dói)</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">🌐 IA: a 5ª alavanca</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">A IA é a 5ª alavanca porque <strong class="text-blue-400">combina capital, código e mídia ao mesmo tempo</strong>. Ela executa tarefas que antes exigiam contratar profissionais (capital + trabalho), roda como software (código) e gera conteúdo em escala (mídia). E o que era inacessível agora cabe no cartão de crédito: <strong class="text-blue-400">US$3-12k/ano numa stack solo vs. US$1,2M/ano numa equipe equivalente</strong>.</p>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4">📊 Dados que importam</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li><strong>US$3-12k/ano</strong> — stack solo realista (LLM + n8n + cloud + ferramentas)</li>
+          <li><strong>US$1,2-1,4M/ano</strong> — equipe de 10 pessoas equivalente em capacidade</li>
+          <li><strong>95-98%</strong> — redução de custo operacional pela substituição via IA</li>
+          <li><strong>Permissionless</strong> — qualquer um com cartão e internet roda no mesmo nível técnico das big techs</li>
+        </ul>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3">💡 Por que isso é histórico</h3>
+        <p class="text-neutral-300">Pela primeira vez na história econômica, a alavanca mais poderosa também é a mais barata e a mais democrática. Não exige diploma, sotaque ou CEP. Só exige que você comece.</p>
+      </div>
+    </section>
+
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">💰 Por que automação cria renda rápido</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Automação rende rápido porque resolve <strong class="text-blue-400">dor cobrável e mensurável</strong>. Empresa não paga por "ferramenta legal" — paga por hora economizada, erro evitado ou venda recuperada. <strong class="text-blue-400">B2B</strong> é o caminho inicial mais rápido: ROI claro, ticket alto, ciclo curto. <strong class="text-blue-400">B2C</strong> exige audiência, marca e funil — vem depois.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Faça primeiro</h4>
+          <ul class="space-y-2 text-neutral-300">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>B2B: dor recorrente, ROI mensurável, ticket R$1-10k/mês</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Resolver problema que cliente já paga alguém pra fazer</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Cobrar percentual do que você economiza</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Evite no começo</h4>
+          <ul class="space-y-2 text-neutral-300">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>B2C sem audiência (precisa marca antes)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>SaaS genérico competindo com Big Tech</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Vender "IA" — vender resultado em R$</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">🇧🇷 Brasileiro e o desejo de empreender</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">O Brasil tem um dos maiores apetites empreendedores do mundo. <strong class="text-blue-400">33% dos brasileiros</strong> dizem querer abrir negócio próprio. <strong class="text-blue-400">63% querem renda acima de 6 salários mínimos</strong>, mas a maioria nunca passa de 2-3. O gap entre desejo e execução é onde a oportunidade vive — e a janela está aberta agora porque a maioria ainda nem sabe que IA virou ferramenta de empreendedor solo.</p>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4">📊 Mercado BR em números</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li><strong>33%</strong> dos brasileiros querem empreender (uma das maiores taxas do mundo)</li>
+          <li><strong>63%</strong> aspiram renda &gt; 6 salários mínimos</li>
+          <li><strong>~20 milhões</strong> de MEIs ativos — base enorme de potenciais clientes B2B</li>
+          <li><strong>Janela</strong> — adoção de IA empresarial no Brasil ainda é incipiente. Quem entra agora educa o mercado.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">🎯 Mudando o modelo mental</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">A maior mudança não é técnica — é mental. Sair do <strong class="text-blue-400">"empregado que executa atividades"</strong> para <strong class="text-blue-400">"operador que constrói sistemas"</strong>. Em vez de perguntar "quanto ganho por hora?", perguntar "que ativo posso construir hoje que renda nos próximos 12 meses?". Você se vê como CEO de uma operação minúscula, não como funcionário de você mesmo.</p>
+
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4">🧠 Asset mindset vs. Activity mindset</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>Activity:</strong> "Hoje preciso fazer X tarefa." Resultado: tarefa entregue, dinheiro recebido uma vez.</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>Asset:</strong> "Hoje construo sistema que faz X automaticamente." Resultado: sistema entrega N vezes sem você.</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>CEO de operação minúscula:</strong> seu trabalho é projetar e melhorar a máquina, não rodar dentro dela.</span></li>
+        </ul>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3">💡 Pergunta de bolso</h3>
+        <p class="text-neutral-300">Antes de aceitar qualquer tarefa nova, pergunte: "isso é atividade (paga uma vez) ou ativo (paga várias)?". Se é atividade pura, automatize ou recuse.</p>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-blue-900/40 via-dark-800 to-dark-800 rounded-xl border border-blue-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6">🎯 Resumo do Módulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">5 alavancas (Naval)</strong> <span class="text-neutral-400">— capital, trabalho, código, mídia, IA. Output desacoplado de input.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Permissionless é o atalho</strong> <span class="text-neutral-400">— código e mídia (e agora IA) não precisam de licença.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">IA combina 3 alavancas</strong> <span class="text-neutral-400">— US$3-12k/ano substitui equipe de US$1,2M.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Automação rende rápido em B2B</strong> <span class="text-neutral-400">— ROI claro, ticket alto, dor cobrável.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Brasil tem apetite e janela</strong> <span class="text-neutral-400">— 33% querem empreender, mercado IA ainda incipiente.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Asset &gt; activity</strong> <span class="text-neutral-400">— construir sistemas, não executar tarefas. Você é CEO de operação minúscula.</span></div></div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-blue-400 mb-2">Próximo Módulo:</h3>
+          <p class="text-neutral-300">2.2 — O Solopreneur Real: casos vivos de quem ganha milhões sozinho.</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="index.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Voltar à trilha</a>
+          <a href="modulo-2-2.html" class="flex-1 text-center px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 transition-colors">Próximo módulo →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="border-t border-dark-600 py-8 mt-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>PROF 2030 · Trilha 2 · Módulo 2.1 · 2026</p>
+    </div>
+  </footer>
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) { themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark'); } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => { themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden'); html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light'); });
+  </script>
+</body>
+</html>

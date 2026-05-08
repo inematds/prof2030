@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 1.5 — Dialogar com Agentes | PROF 2030</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } } }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-500\/20 { background-color: rgba(5, 150, 105, 0.12); }
+    html:not(.dark) .bg-emerald-500\/10 { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5, 150, 105, 0.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185, 28, 28, 0.08); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185, 28, 28, 0.25); }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(37, 99, 235, 0.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37, 99, 235, 0.25); }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🧭</span>
+            <span class="font-bold text-lg hidden sm:inline">PROF 2030</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-emerald-400 bg-emerald-500/10"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Comunicar</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Empreender</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Liderar</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-emerald-400">Início</a>
+      <span>/</span>
+      <a href="index.html" class="hover:text-emerald-400">Trilha 1</a>
+      <span>/</span>
+      <span class="text-emerald-400">Módulo 1.5</span>
+    </div>
+  </nav>
+
+  <header class="bg-gradient-to-br from-emerald-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-emerald-500/20 text-emerald-400 text-xs font-semibold rounded-full mb-4">MÓDULO 1.5</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🤖 Dialogar com Agentes</h1>
+      <p class="text-lg text-neutral-300 max-w-3xl mb-4">Loop humano → máquina → humano. Quando delegar, quando supervisionar. Princípios pra liderar agentes de IA.</p>
+      <blockquote class="border-l-4 border-emerald-500/50 pl-4 italic text-neutral-400 max-w-3xl">"The odds of 100,000 of those agents building NVIDIA is zero percent." <span class="block text-sm mt-1 not-italic text-neutral-500">— Jensen Huang (agentes amplificam, mas não constroem sozinhos)</span></blockquote>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">~40</div><div class="text-xs text-neutral-400">Minutos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">Inter.</div><div class="text-xs text-neutral-400">Nível</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">Mix</div><div class="text-xs text-neutral-400">Tipo</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">🤖 O que é um agente de IA</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Agente de IA <strong class="text-emerald-400">não é só responder pergunta</strong>. É um sistema que recebe um <em>objetivo</em>, <strong class="text-emerald-400">planeja</strong> os passos, <strong class="text-emerald-400">executa</strong> usando ferramentas (buscar na web, escrever arquivo, mandar e-mail, chamar API), <strong class="text-emerald-400">avalia</strong> o resultado e <strong class="text-emerald-400">ajusta</strong> com feedback. É o loop clássico de inteligência: <em>perceber → pensar → agir</em>. Diferença chave do chatbot puro: agente <em>tem mãos</em> — pode mexer no mundo, não só conversar.</p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4">🔑 Anatomia de um agente</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><strong>Objetivo:</strong> "marque reunião de 30 min com X esta semana"</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><strong>Planejamento:</strong> "vou checar agenda, propor horários, mandar convite"</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><strong>Ferramentas:</strong> Google Calendar API, Gmail, etc.</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><strong>Memória:</strong> preferências, contatos, histórico</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><strong>Loop de avaliação:</strong> "deu certo? não? tenta de novo, ajuste"</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">🔁 Loop humano → máquina → humano</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">A configuração que mais funciona em 2026 é <strong class="text-emerald-400">human-in-the-loop</strong>: humano define <em>intenção</em> e contexto, máquina <em>executa</em> em paralelo várias tarefas, humano <em>valida</em> e ajusta. Não é "humano fica de fora" nem "humano faz tudo". É colaboração com checkpoints. Todo ponto de decisão importante volta pro humano. Reversibilidade é o critério-chave: ações reversíveis o agente faz sozinho, irreversíveis pedem aprovação.</p>
+
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold mb-1">Humano define intenção</h4>
+            <p class="text-neutral-300 text-sm">"Quero analisar as 50 últimas vendas e identificar padrões". Define objetivo, escopo, critério de sucesso.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold mb-1">Máquina executa</h4>
+            <p class="text-neutral-300 text-sm">Acessa dados, processa, gera análise. Humano não fica esperando — faz outra coisa em paralelo.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold mb-1">Humano valida e ajusta</h4>
+            <p class="text-neutral-300 text-sm">Revisa output, marca o que está certo, corrige o que não está. Refina o pedido se necessário.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">4</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold mb-1">Loop fecha</h4>
+            <p class="text-neutral-300 text-sm">Aprendizado retroalimenta: agente fica melhor a cada iteração com o mesmo humano.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">🎯 Quando delegar / supervisionar</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Decisão chave: <strong class="text-emerald-400">delegar total ou supervisionar de perto</strong>? A matriz é simples — combina <em>custo do erro</em> com <em>reversibilidade</em>. Tarefa low-stakes e reversível? Delega. High-stakes e irreversível? Supervisão próxima, aprovação humana antes de executar. <strong class="text-emerald-400">Blast radius</strong> é o conceito: o tamanho do estrago se algo der errado. Quanto maior o blast radius, mais humano no loop.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Delega total</h4>
+          <ul class="space-y-2 text-neutral-300">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Resumir e-mails recebidos</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Categorizar tickets de suporte</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Gerar drafts de resposta (sem enviar)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Pesquisar e organizar informação</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">⚠ Supervisão obrigatória</h4>
+          <ul class="space-y-2 text-neutral-300">
+            <li class="flex items-start space-x-2"><span class="text-red-400">⚠</span><span>Enviar e-mails externos</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">⚠</span><span>Pagar contas / mover dinheiro</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">⚠</span><span>Apagar/sobrescrever dados</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">⚠</span><span>Postar publicamente em redes/site</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3">💡 Dica prática</h3>
+        <p class="text-neutral-300">Pergunta-âncora antes de soltar agente: <em>"se isto der errado da pior forma possível, o que acontece?"</em>. Se a resposta envolve dinheiro, pessoas, reputação — adicione gate humano.</p>
+      </div>
+    </section>
+
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">🛡️ Limites e guard-rails</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Agente sem limite explícito é problema esperando pra acontecer. <strong class="text-emerald-400">Guard-rails</strong> são as regras invioláveis. Boas práticas: nunca enviar e-mail externo sem aprovação humana, nunca apagar dados sem confirmação, nunca gastar acima de R$ X, nunca acessar fora da <em>allow-list</em> de domínios/sistemas. Use <strong class="text-emerald-400">modo dry-run</strong> em ambiente novo: agente diz "vou fazer X" antes de fazer. Você confirma. Só depois vira modo automático.</p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4">🛡️ Guard-rails essenciais</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">▸</span><span><strong>Limites financeiros:</strong> "nunca executar ação que custe &gt; R$ 50 sem confirmação"</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">▸</span><span><strong>Allow-list:</strong> apenas domínios/contatos/sistemas pré-aprovados</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">▸</span><span><strong>Operações destrutivas exigem confirmação:</strong> delete, drop, truncate</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">▸</span><span><strong>Logs auditáveis:</strong> tudo que o agente faz fica gravado</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">▸</span><span><strong>Kill switch:</strong> botão de parada de emergência sempre acessível</span></li>
+        </ul>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4">📊 Modos de operação</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li><strong>Dry-run:</strong> agente descreve o que faria, mas não faz — bom pra fase 1</li>
+          <li><strong>Aprovação por ação:</strong> cada execução pede confirmação — bom pra fase 2</li>
+          <li><strong>Auto com log:</strong> executa, mas você revisa logs depois — bom pra fase 3 estável</li>
+          <li><strong>Full auto:</strong> só pra tarefas comprovadamente seguras + reversíveis</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">🧰 Multiagentes</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Quando uma tarefa é grande demais pra um único agente, surge <strong class="text-emerald-400">multiagente</strong>: vários agentes especializados colaborando, coordenados por um <em>orquestrador</em>. Padrão clássico: <em>pesquisador</em> levanta dados, <em>analista</em> processa, <em>escritor</em> redige, <em>revisor</em> critica. Eles compartilham <strong class="text-emerald-400">estado</strong> (memória comum) e se comunicam via mensagens estruturadas. Vantagem: cada agente pode ter prompt e ferramentas específicas. Custo: complexidade — orquestração mal feita gera mais bug que valor.</p>
+
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold mb-1">Pesquisador</h4>
+            <p class="text-neutral-300 text-sm">Acessa fontes (web, base interna), levanta dados brutos. Foco em recall.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold mb-1">Analista</h4>
+            <p class="text-neutral-300 text-sm">Filtra, sintetiza, identifica padrões. Foco em precisão.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold mb-1">Escritor</h4>
+            <p class="text-neutral-300 text-sm">Pega análise e produz output final na voz e formato definidos.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">4</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold mb-1">Revisor</h4>
+            <p class="text-neutral-300 text-sm">Critica e devolve pra escritor melhorar. Loop até qualidade aceitável.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">★</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold mb-1">Orquestrador</h4>
+            <p class="text-neutral-300 text-sm">Coordena quem faz o quê e quando. Mantém estado compartilhado consistente.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">🧭 Liderar agentes — 5 princípios</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Liderar agente é como liderar pessoa: <strong class="text-emerald-400">clareza &gt; controle</strong>. Cinco princípios formam o núcleo: (1) <em>clareza</em> de objetivo e critério, (2) <em>contexto</em> suficiente pra decidir, (3) <em>checagem</em> em pontos certos, (4) <em>correção</em> rápida quando desvia, (5) <em>confiança calibrada</em> — nem cego, nem desconfiado. <strong class="text-emerald-400">"Trust but verify"</strong>. Em 5 anos, <em>liderar agentes</em> vai ser competência básica de gestor — assim como saber dar feedback hoje.</p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4">🧭 Os 5 princípios</h3>
+        <ul class="space-y-3 text-neutral-300">
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">1.</span><span><strong>Clareza:</strong> objetivo, critério de sucesso e formato esperado bem definidos</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">2.</span><span><strong>Contexto:</strong> agente precisa do contexto que o humano teria pra decidir igual</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">3.</span><span><strong>Checagem:</strong> pontos de verificação alinhados ao blast radius da ação</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">4.</span><span><strong>Correção:</strong> feedback rápido e específico quando desvia do esperado</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">5.</span><span><strong>Confiança calibrada:</strong> aumenta com track record, recua diante de mudança</span></li>
+        </ul>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3">💡 Dica prática</h3>
+        <p class="text-neutral-300">Aplique os 5 princípios a um humano novo na equipe — funcionam exatamente igual. O bom líder de pessoas tende a ser o bom líder de agentes. Esse skill virou ainda mais valioso.</p>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-emerald-900/40 via-dark-800 to-dark-800 rounded-xl border border-emerald-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6">🎯 Resumo do Módulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">Agente ≠ chatbot</strong> <span class="text-neutral-400">— planeja, executa, avalia, ajusta. Tem ferramentas, mexe no mundo.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">Loop humano-máquina-humano</strong> <span class="text-neutral-400">— intenção, execução, validação, ajuste.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">Matriz de delegação</strong> <span class="text-neutral-400">— blast radius e reversibilidade decidem o nível de supervisão.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">Guard-rails são obrigatórios</strong> <span class="text-neutral-400">— allow-list, limites, dry-run, kill switch.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">Multiagente para tarefas grandes</strong> <span class="text-neutral-400">— pesquisador, analista, escritor, revisor + orquestrador.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">5 princípios de liderança</strong> <span class="text-neutral-400">— clareza, contexto, checagem, correção, confiança calibrada.</span></div></div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-emerald-400 mb-2">Próximo Módulo:</h3>
+          <p class="text-neutral-300">1.6 — Projeto: Seu Agente Pessoal</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="modulo-1-4.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Módulo anterior</a>
+          <a href="modulo-1-6.html" class="flex-1 text-center px-6 py-3 bg-emerald-600 text-white rounded-lg font-semibold hover:bg-emerald-500 transition-colors">Próximo módulo →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>PROF 2030 · Trilha 1 · Módulo 1.5 · 2026</p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) { themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark'); } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => { themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden'); html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light'); });
+  </script>
+</body>
+</html>

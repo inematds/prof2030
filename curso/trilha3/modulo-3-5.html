@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 3.5 — Formar pessoas insubstituíveis | PROF 2030</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } } }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .bg-purple-500\/20 { background-color: rgba(124, 58, 237, 0.12); }
+    html:not(.dark) .bg-purple-500\/10 { background-color: rgba(124, 58, 237, 0.08); }
+    html:not(.dark) .border-purple-500\/30 { border-color: rgba(124, 58, 237, 0.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185, 28, 28, 0.08); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185, 28, 28, 0.25); }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-900\/20 { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5, 150, 105, 0.25); }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(37, 99, 235, 0.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37, 99, 235, 0.25); }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🧭</span>
+            <span class="font-bold text-lg hidden sm:inline">PROF 2030</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Comunicar</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Empreender</span></a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-purple-400 bg-purple-500/10"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Liderar</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-purple-400">Início</a>
+      <span>/</span>
+      <a href="index.html" class="hover:text-purple-400">Trilha 3</a>
+      <span>/</span>
+      <span class="text-purple-400">Módulo 3.5</span>
+    </div>
+  </nav>
+  <header class="bg-gradient-to-br from-purple-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-purple-500/20 text-purple-400 text-xs font-semibold rounded-full mb-4">MÓDULO 3.5</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">👨‍👩‍👧 Formar pessoas insubstituíveis</h1>
+      <p class="text-lg text-neutral-300 max-w-3xl mb-4">Como liderar equipe, criar filhos, educar alunos pra um mundo que ninguém entende direito ainda. Liderança humana × IA.</p>
+      <blockquote class="border-l-4 border-purple-500/50 pl-4 italic text-neutral-400 max-w-3xl">"A profissão que seu filho vai ter ainda nem existe. Você não treina conteúdo — treina caráter e curiosidade."<span class="block text-sm mt-1 not-italic text-neutral-500">— princípio do tripé Inema</span></blockquote>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">~40</div><div class="text-xs text-neutral-400">Minutos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">Aplicação</div><div class="text-xs text-neutral-400">Nível</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">Liderança</div><div class="text-xs text-neutral-400">Tipo</div></div>
+      </div>
+    </div>
+  </header>
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">👨‍👩‍👧 Parentalidade na era IA</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Seu filho vai trabalhar numa profissão que ainda não existe. Não dá pra preparar pra <strong class="text-purple-400">conteúdo</strong> — só dá pra preparar pra <strong class="text-purple-400">caráter, curiosidade e capacidade de aprender de novo</strong>. A nova parentalidade é mais sobre formar humanos sólidos que treinar especialistas.</p>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-purple-400 mb-4">👨‍👩‍👧 Os 4 pilares</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Curiosidade &gt; nota</strong> — incentive a pergunta, não só a resposta certa</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Conversar &gt; vigiar</strong> — diálogo aberto sobre IA, internet, redes</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Expor a problemas reais cedo</strong> — projetos com impacto, não só simulado</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>IA com ética</strong> — usar como ferramenta, manter pensamento próprio</span></li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6"><h4 class="font-bold text-emerald-400 mb-4">✓ Faça</h4><ul class="space-y-2 text-neutral-300"><li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Pergunte "o que você acha?" antes de "a resposta é"</span></li><li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Use IA junto, mostrando o processo</span></li><li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Permita falhas pequenas pra evitar grandes</span></li></ul></div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6"><h4 class="font-bold text-red-400 mb-4">✗ Evite</h4><ul class="space-y-2 text-neutral-300"><li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Proibir IA — só atrasa adaptação</span></li><li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Treinar pra carreira que estará morta em 10 anos</span></li><li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Ensinar só o que pode ser googlado</span></li></ul></div>
+      </div>
+    </section>
+
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">🎓 Educação que prepara</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Maioria das escolas brasileiras ainda treina pra <strong class="text-purple-400">o mundo de 2000</strong>: prova, decoreba, currículo rígido. O que prepara pra 2030 envolve <strong class="text-purple-400">PBL (project-based learning), pensamento crítico e tutoria com IA</strong>.</p>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4">📊 O gap real</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li><strong>~80%</strong> das escolas BR ainda priorizam ENEM, não pensamento crítico</li>
+          <li><strong>~5%</strong> usam PBL como espinha curricular</li>
+          <li><strong>~15%</strong> integram IA como tutor, não como inimigo</li>
+          <li><strong>OECD</strong> aponta Brasil em 60º em pensamento criativo</li>
+        </ul>
+      </div>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-purple-400 mb-4">🎓 PBL com IA</h3>
+        <p class="text-neutral-300 mb-4">Modelo que funciona em sala de aula 2026:</p>
+        <ul class="space-y-2 text-neutral-300">
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Pergunta real</strong> — "como reduzir lixo da nossa escola em 30%?"</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Time misto</strong> — alunos + IA tutora 1:1</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Entrega visível</strong> — apresentação para comunidade real</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Avaliação por processo</strong> — não só nota final</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">👥 Liderar times híbridos</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Time 2026 é <strong class="text-purple-400">humanos + agentes de IA</strong>. Líder precisa saber dar contexto pra ambos. <strong class="text-purple-400">Hybrid leadership</strong> é skill nova: workflow design, alocação humano-vs-agente, governança de output.</p>
+
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600"><h4 class="font-semibold mb-1">Mapa de tarefas</h4><p class="text-neutral-300 text-sm">Toda semana, divida tarefas: humano-only, agente-only, híbrido. Atualize toda quinzena.</p></div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600"><h4 class="font-semibold mb-1">Contexto compartilhado</h4><p class="text-neutral-300 text-sm">Documento vivo (Notion/Linear) com objetivos, glossário, decisões. Humano e IA leem o mesmo.</p></div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600"><h4 class="font-semibold mb-1">Validação humana</h4><p class="text-neutral-300 text-sm">Output do agente sempre passa por revisão humana antes de ir pra cliente/produção.</p></div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">4</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600"><h4 class="font-semibold mb-1">Cadência de retro</h4><p class="text-neutral-300 text-sm">Revisão semanal: o que IA fez melhor? Em que humanos brilharam? Re-aloque.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">🔥 Curiosidade e coragem</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Curiosidade gera <strong class="text-purple-400">perguntas</strong>. Coragem <strong class="text-purple-400">implementa</strong>. Sem o par, vira leitura sem ação ou ação sem direção. <strong class="text-purple-400">Beginner's mind</strong> de Suzuki: olhar o problema como se fosse a primeira vez, mesmo sendo a centésima.</p>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-purple-400 mb-4">🔥 Equação do crescimento</h3>
+        <p class="text-neutral-300 mb-4">Curiosidade × Coragem = Crescimento real.</p>
+        <ul class="space-y-2 text-neutral-300">
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Só curiosidade</strong> — vira eterno aluno passivo, virtuose de podcast</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Só coragem</strong> — ação sem direção, queima energia em besteira</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Os dois juntos</strong> — pergunta certa + execução, fórmula de quem cresce</span></li>
+        </ul>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3">💡 Beginner's mind</h3>
+        <p class="text-neutral-300">Time veterano vira inimigo da inovação quando "já viu tudo". Antídoto: trate cada problema como se fosse seu primeiro dia. Pergunte o óbvio. Os juniores fazem isso por ignorância — você faz por escolha.</p>
+      </div>
+    </section>
+
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">🤲 Mentoria sem dependência</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Mentor bom <strong class="text-purple-400">forma autonomia</strong>, não fã clube. Princípio da andaimagem: dá suporte, mas tira aos poucos. Sucesso transferido = mentor ficou desnecessário, e tudo bem com isso.</p>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-purple-400 mb-4">🤲 Andaimagem</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Início</strong> — você mostra, ele observa</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Meio</strong> — ele tenta, você corrige em tempo real</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Fim</strong> — ele faz sozinho, você revisa só se chamado</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Conclusão</strong> — ele ensina outro. Você sai do caminho.</span></li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6"><h4 class="font-bold text-emerald-400 mb-4">✓ Mentor saudável</h4><ul class="space-y-2 text-neutral-300"><li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Comemora quando o aprendiz supera</span></li><li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Indica outros mentores quando útil</span></li><li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Devolve a pergunta antes de dar resposta</span></li></ul></div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6"><h4 class="font-bold text-red-400 mb-4">✗ Mentor tóxico</h4><ul class="space-y-2 text-neutral-300"><li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Cria fã que nunca decide sozinho</span></li><li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Compete com o próprio aprendiz</span></li><li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Quer ser fonte única de validação</span></li></ul></div>
+      </div>
+    </section>
+
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">🇧🇷 Casos brasileiros</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Liderança humana ganha sotaque local. Adaptação cultural conta — Brasil tem <strong class="text-purple-400">liderança de proximidade</strong>, vínculo afetivo, jeitinho criativo. Educadores, líderes comunitários e pais que aplicam isso bem viram referência.</p>
+
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600"><h4 class="font-semibold mb-1">Educadores que adaptaram PBL</h4><p class="text-neutral-300 text-sm">Sesi-SP, Lemann, Ismart — projetos com IA tutora em escola pública, mantendo afeto.</p></div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600"><h4 class="font-semibold mb-1">Líderes de favela tech</h4><p class="text-neutral-300 text-sm">Olabi, Recode, Programaria — formando devs com IA, mantendo identidade comunitária.</p></div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600"><h4 class="font-semibold mb-1">Pais que conversam sobre IA</h4><p class="text-neutral-300 text-sm">Famílias que sentam pra usar ChatGPT junto, conversam sobre limites e oportunidades.</p></div>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3">💡 Vantagem cultural</h3>
+        <p class="text-neutral-300">Brasileiro lidera com afeto e improviso — duas skills altíssimas em era IA. Não terceirize identidade pra modelo "americano de liderança". Misture: rigor de fora, calor daqui. É vantagem competitiva real.</p>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-purple-900/40 via-dark-800 to-dark-800 rounded-xl border border-purple-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6">🎯 Resumo do Módulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">Parentalidade IA</strong> <span class="text-neutral-400">— curiosidade &gt; nota, conversar &gt; vigiar</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">Educação 2030</strong> <span class="text-neutral-400">— PBL com IA, pensamento crítico, processo &gt; nota</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">Times híbridos</strong> <span class="text-neutral-400">— mapa, contexto, validação humana, retro</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">Curiosidade × coragem</strong> <span class="text-neutral-400">— par indispensável, beginner's mind</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">Mentoria sem dependência</strong> <span class="text-neutral-400">— andaimagem, comemorar superação</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">Casos BR</strong> <span class="text-neutral-400">— afeto + improviso como vantagem cultural</span></div></div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-purple-400 mb-2">Próximo Módulo:</h3>
+          <p class="text-neutral-300">3.6 — Projeto Final: Sua Identidade Insubstituível</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="index.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Voltar à trilha</a>
+          <a href="modulo-3-6.html" class="flex-1 text-center px-6 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-500 transition-colors">Próximo módulo →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="border-t border-dark-600 py-8 mt-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>PROF 2030 · Trilha 3 · Módulo 3.5 · 2026</p>
+    </div>
+  </footer>
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) { themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark'); } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => { themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden'); html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light'); });
+  </script>
+</body>
+</html>

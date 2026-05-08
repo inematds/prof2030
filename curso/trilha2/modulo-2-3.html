@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 2.3 — n8n na Prática | PROF 2030</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } } }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37, 99, 235, 0.12); }
+    html:not(.dark) .bg-blue-500\/10 { background-color: rgba(37, 99, 235, 0.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37, 99, 235, 0.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185, 28, 28, 0.08); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185, 28, 28, 0.25); }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-900\/20 { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5, 150, 105, 0.25); }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🧭</span>
+            <span class="font-bold text-lg hidden sm:inline">PROF 2030</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Comunicar</span></a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-blue-400 bg-blue-500/10"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Empreender</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Liderar</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-blue-400">Início</a>
+      <span>/</span>
+      <a href="index.html" class="hover:text-blue-400">Trilha 2</a>
+      <span>/</span>
+      <span class="text-blue-400">Módulo 2.3</span>
+    </div>
+  </nav>
+  <header class="bg-gradient-to-br from-blue-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-semibold rounded-full mb-4">MÓDULO 2.3</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🔧 n8n na Prática</h1>
+      <p class="text-lg text-neutral-300 max-w-3xl mb-4">Hands-on. Você sai com 1 fluxo n8n funcionando que gera valor mensurável. A ferramenta favorita do Nei pra começar.</p>
+      <blockquote class="border-l-4 border-blue-500/50 pl-4 italic text-neutral-400 max-w-3xl">"Automação que não roda em produção é só PowerPoint."<span class="block text-sm mt-1 not-italic text-neutral-500">— princípio prático</span></blockquote>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">~60</div><div class="text-xs text-neutral-400">Minutos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">Prático</div><div class="text-xs text-neutral-400">Nível</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">Hands-on</div><div class="text-xs text-neutral-400">Tipo</div></div>
+      </div>
+    </div>
+  </header>
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">🔧 O que é n8n</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">n8n é uma ferramenta <strong class="text-blue-400">open-source de automação visual</strong>. Você arrasta blocos (nodes) que conversam com APIs, IA, planilhas, e-mails, bancos de dados — e conecta com setinhas. Pode rodar <strong class="text-blue-400">self-hosted</strong> (servidor próprio, custo &lt; R$30/mês) ou <strong class="text-blue-400">na nuvem deles</strong> (a partir de US$20/mês). Hoje é uma das skills mais demandadas do mercado de automação BR.</p>
+
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4">⚡ Por que n8n e não Zapier/Make</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>Open-source:</strong> self-host = custo previsível, zero limite por execução.</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>Nodes nativos de IA:</strong> OpenAI, Claude, Gemini, agentes — tudo pronto.</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>JavaScript embutido:</strong> quando o node não basta, você escreve 3 linhas e resolve.</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>Mercado BR:</strong> demanda explodindo, agências cobram R$5-30k por implementação.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">🧱 Anatomia de um workflow</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Todo fluxo n8n (e, na real, toda automação) tem três peças: <strong class="text-blue-400">trigger</strong> (o que dispara), <strong class="text-blue-400">nodes</strong> (o que processa) e <strong class="text-blue-400">output</strong> (onde a coisa pousa). Esse modelo mental serve pra Zapier, Make, scripts Python ou agente de IA — uma vez aprendido, só muda a sintaxe.</p>
+
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold mb-1">Trigger (gatilho)</h4><p class="text-neutral-300 text-sm">O que faz o fluxo começar. Tipos comuns: webhook (URL recebe POST), schedule (cron — toda terça às 9h), evento de app (novo e-mail, novo lead).</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold mb-1">Nodes (processamento)</h4><p class="text-neutral-300 text-sm">Cada bloco faz uma coisa: chama IA, busca dado, faz IF, transforma, junta arrays. Output de um vira input do próximo.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold mb-1">Output (destino)</h4><p class="text-neutral-300 text-sm">Onde o resultado pousa: planilha, Slack, e-mail, CRM, banco. Se não tem destino útil, é demo, não automação.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">🎯 Escolhendo a primeira automação</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">A pior decisão é começar pelo fluxo errado. Critério: <strong class="text-blue-400">repetitivo, semanal+, mensurável e reversível</strong>. Multiplique <strong class="text-blue-400">frequência × valor por execução</strong> — quanto maior o produto, melhor o ROI. E comece por algo <strong class="text-blue-400">reversível</strong>: se quebrar, ninguém perde dinheiro.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Bons primeiros candidatos</h4>
+          <ul class="space-y-2 text-neutral-300">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Resumo diário de e-mails / WhatsApp Business</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Pré-qualificação de leads (form → IA → planilha)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Geração de conteúdo (briefing → IA → rascunho no Notion)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Relatórios semanais automáticos (dados → IA → PDF/Slack)</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Evite no primeiro fluxo</h4>
+          <ul class="space-y-2 text-neutral-300">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Pagamentos / financeiro (irreversível)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Disparo em massa pra cliente (risco de spam)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Coisas anuais (você nunca testa)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Fluxos de 30+ nodes (debugar é inferno)</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">🏗️ Construindo passo a passo</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Walkthrough do seu primeiro fluxo: <strong class="text-blue-400">resumo diário do que importa na sua caixa de entrada via IA</strong>. Pra fazer agora.</p>
+
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold mb-1">Criar conta n8n</h4><p class="text-neutral-300 text-sm">n8n.cloud (trial grátis 14 dias) ou self-host (Coolify/Railway/Hetzner por R$20-50/mês).</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold mb-1">Novo workflow</h4><p class="text-neutral-300 text-sm">"+ New Workflow". Dê um nome com data: "2026-05 — Resumo de inbox v1".</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold mb-1">Trigger: Schedule</h4><p class="text-neutral-300 text-sm">Adicione node "Schedule Trigger". Configure pra rodar todo dia às 8h.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">4</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold mb-1">Buscar e-mails</h4><p class="text-neutral-300 text-sm">Adicione node Gmail (ou IMAP). Filtro: últimas 24h, não lidos. Conecte ao Schedule.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">5</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold mb-1">Node IA</h4><p class="text-neutral-300 text-sm">Adicione "OpenAI" ou "Anthropic". Prompt: "Resuma esses e-mails em até 5 bullets, marcando o que exige resposta minha."</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">6</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold mb-1">Output: WhatsApp ou Slack</h4><p class="text-neutral-300 text-sm">Adicione node WhatsApp (via Z-API) ou Slack. Manda o resumo pra você. Teste manual com "Execute Workflow", depois ative.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3">💡 Atalho realista</h3>
+        <p class="text-neutral-300">Não tente buildar do zero. Pegue templates da galeria n8n (n8n.io/workflows), copie um parecido com seu caso, customize. Aprende-se 10x mais rápido modificando do que criando.</p>
+      </div>
+    </section>
+
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">🧪 Testando, debugando, observando</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">90% dos fluxos quebram em produção por <strong class="text-blue-400">edge cases</strong> — e-mail vazio, JSON malformado, API fora do ar. Aprenda 3 disciplinas: <strong class="text-blue-400">testar com casos reais</strong>, <strong class="text-blue-400">ler logs</strong>, configurar <strong class="text-blue-400">retry e error workflow</strong>.</p>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4">🐛 5 erros mais comuns</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li><strong>1. Campo vazio</strong> — IA volta string nula, próximo node quebra. Use IF antes pra checar.</li>
+          <li><strong>2. Rate limit</strong> — você dispara 200 reqs em 1s na API. Use SplitInBatches + wait.</li>
+          <li><strong>3. Credencial expirada</strong> — token OAuth caduca. Configure renovação ou notificação.</li>
+          <li><strong>4. Loop infinito</strong> — fluxo dispara ele mesmo via webhook. Sempre teste com flag de execução única.</li>
+          <li><strong>5. Sem timezone</strong> — Schedule roda em UTC, você pensou em Brasília. Confira fuso.</li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Disciplina de produção</h4>
+          <ul class="space-y-2 text-neutral-300">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Testar com 10+ casos reais antes de ativar</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Configurar Error Workflow (avisa no Slack quando quebra)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Retry: 3 tentativas com 30s de espera</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Não faça</h4>
+          <ul class="space-y-2 text-neutral-300">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Ativar sem testar caso real</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Confiar em "happy path" — sempre tem caso esquisito</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Editar fluxo em produção sem versionar</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">📈 Medindo o valor</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Automação sem métrica é hobby. <strong class="text-blue-400">Tempo economizado × frequência × valor da hora = ROI</strong>. E não é só pra você — esse mesmo cálculo vira <strong class="text-blue-400">arma de venda</strong>: na próxima reunião com cliente, você abre uma planilha mostrando "essa automação economiza 12h/mês a R$200/h = R$2.400/mês — e custo R$1.500/mês de mensalidade".</p>
+
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4">🧮 Fórmula básica de ROI</h3>
+        <p class="text-neutral-300 mb-4">Pegue qualquer fluxo. Aplique:</p>
+        <ul class="space-y-2 text-neutral-300">
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>Tempo manual:</strong> minutos pra fazer 1x sem automação</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>Frequência:</strong> quantas vezes por mês isso roda</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>Valor da hora:</strong> sua hora ou da pessoa que faria (R$50-300+)</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>Economia mensal = (minutos ÷ 60) × frequência × valor da hora</strong></span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>ROI = economia ÷ custo de operar fluxo</strong> (geralmente &gt; 10x).</span></li>
+        </ul>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3">💡 Hábito do operador</h3>
+        <p class="text-neutral-300">Toda quinta-feira, abra o n8n e veja: quantas execuções rodaram? Quanto tempo economizei? Anota num doc. Em 90 dias você tem case study real pra vender o próximo cliente.</p>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-blue-900/40 via-dark-800 to-dark-800 rounded-xl border border-blue-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6">🎯 Resumo do Módulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">n8n é open-source visual</strong> <span class="text-neutral-400">— self-host barato, nodes IA nativos, JS embutido.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Trigger → Nodes → Output</strong> <span class="text-neutral-400">— modelo mental que serve pra qualquer ferramenta.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Primeira automação: repetitiva e reversível</strong> <span class="text-neutral-400">— frequência × valor. Não comece por pagamento.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Build copiando templates</strong> <span class="text-neutral-400">— galeria n8n.io/workflows, customize, aprende 10x mais rápido.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">5 erros clássicos</strong> <span class="text-neutral-400">— campo vazio, rate limit, credencial, loop, timezone.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">ROI = (min ÷ 60) × freq × R$/h</strong> <span class="text-neutral-400">— vira métrica pessoal e arma de venda.</span></div></div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-blue-400 mb-2">Próximo Módulo:</h3>
+          <p class="text-neutral-300">2.4 — Stack econômica do solo: o que comprar agora, o que esperar.</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="index.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Voltar à trilha</a>
+          <a href="modulo-2-4.html" class="flex-1 text-center px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 transition-colors">Próximo módulo →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="border-t border-dark-600 py-8 mt-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>PROF 2030 · Trilha 2 · Módulo 2.3 · 2026</p>
+    </div>
+  </footer>
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) { themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark'); } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => { themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden'); html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light'); });
+  </script>
+</body>
+</html>

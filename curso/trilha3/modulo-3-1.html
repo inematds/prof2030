@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 3.1 — O Despertar | PROF 2030</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } } }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .bg-purple-500\/20 { background-color: rgba(124, 58, 237, 0.12); }
+    html:not(.dark) .bg-purple-500\/10 { background-color: rgba(124, 58, 237, 0.08); }
+    html:not(.dark) .border-purple-500\/30 { border-color: rgba(124, 58, 237, 0.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185, 28, 28, 0.08); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185, 28, 28, 0.25); }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-900\/20 { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5, 150, 105, 0.25); }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(37, 99, 235, 0.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37, 99, 235, 0.25); }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🧭</span>
+            <span class="font-bold text-lg hidden sm:inline">PROF 2030</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Comunicar</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Empreender</span></a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-purple-400 bg-purple-500/10"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Liderar</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-purple-400">Início</a>
+      <span>/</span>
+      <a href="index.html" class="hover:text-purple-400">Trilha 3</a>
+      <span>/</span>
+      <span class="text-purple-400">Módulo 3.1</span>
+    </div>
+  </nav>
+  <header class="bg-gradient-to-br from-purple-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-purple-500/20 text-purple-400 text-xs font-semibold rounded-full mb-4">MÓDULO 3.1</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🌌 O Despertar — Quando a inteligência vira commodity</h1>
+      <p class="text-lg text-neutral-300 max-w-3xl mb-4">A frase fundadora de Jensen Huang. Por que caráter, humanidade e empatia viram os "poderes sobre-humanos" do profissional do futuro.</p>
+      <blockquote class="border-l-4 border-purple-500/50 pl-4 italic text-neutral-400 max-w-3xl">"Character, humanity. Compassion, generosity... I believe those are superhuman powers. And now intelligence is gonna be commoditized."<span class="block text-sm mt-1 not-italic text-neutral-500">— Jensen Huang, CEO da NVIDIA</span></blockquote>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">~40</div><div class="text-xs text-neutral-400">Minutos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">Profundo</div><div class="text-xs text-neutral-400">Nível</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">Despertar</div><div class="text-xs text-neutral-400">Tipo</div></div>
+      </div>
+    </div>
+  </header>
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">🌌 A frase fundadora</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Jensen Huang levou <strong class="text-purple-400">6 segundos</strong> pra dizer a frase que vira a Trilha 3 do avesso. Quando o homem que vende as GPUs que treinam toda IA do mundo afirma que <strong class="text-purple-400">caráter, humanidade, compaixão e generosidade</strong> são os "superpoderes" do futuro — e que inteligência virou commodity — vale parar tudo e escutar. É a inversão de valor mais radical da década.</p>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-purple-400 mb-4">🌌 A inversão de valor</h3>
+        <p class="text-neutral-300 mb-4">Por décadas, "ser inteligente" foi o ativo escasso. QI alto, raciocínio rápido, memória boa, capacidade analítica — tudo isso destravava carreira. Em 2026, IA executa todas essas tarefas por centavos. O que sobra escasso?</p>
+        <ul class="space-y-2 text-neutral-300">
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Caráter</strong> — quem você é quando ninguém vê</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Humanidade</strong> — capacidade de ver outro humano de verdade</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Compaixão</strong> — sofrer-com, não só entender</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Generosidade</strong> — dar valor antes de pedir</span></li>
+        </ul>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3">💡 Por que ouvir Jensen?</h3>
+        <p class="text-neutral-300">Ele tem incentivo zero pra dizer isso. Vende chip de IA, lucra quando empresa demite e automatiza. Se mesmo ele afirma que humanidade é o ativo final, é porque viu o gráfico — e o gráfico mostra que inteligência despencou em valor unitário.</p>
+      </div>
+    </section>
+
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">📊 WEF: empatia tem MENOR substituição</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Não é achismo nem palestra motivacional. O <strong class="text-purple-400">Future of Jobs Report 2025</strong> do World Economic Forum mediu skills por taxa de substituição por IA. A lista das que <strong class="text-purple-400">menos</strong> serão substituídas é toda humana.</p>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4">📊 Skills com menor risco de substituição (WEF 2025)</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li><strong>Empatia & escuta ativa</strong> — captar o que não foi dito</li>
+          <li><strong>Resiliência, flexibilidade, agilidade</strong> — atravessar mudança</li>
+          <li><strong>Liderança e influência social</strong> — mover gente</li>
+          <li><strong>Motivação e autoconsciência</strong> — combustível interno</li>
+          <li><strong>Curiosidade e aprendizado contínuo</strong> — meta-skill</li>
+          <li><strong>Pensamento criativo</strong> — combinar o que ninguém combinou</li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6"><h4 class="font-bold text-emerald-400 mb-4">✓ Cresce em valor</h4><ul class="space-y-2 text-neutral-300"><li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Empatia ativa em conversas difíceis</span></li><li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Liderar time misto humano + IA</span></li><li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Mediar conflito e construir confiança</span></li><li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Aprender rápido em domínio novo</span></li></ul></div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6"><h4 class="font-bold text-red-400 mb-4">✗ Despenca em valor</h4><ul class="space-y-2 text-neutral-300"><li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Decorar fórmulas, datas, leis</span></li><li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Resumir relatório longo</span></li><li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Calcular planilha sem contexto</span></li><li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Traduzir e revisar texto padrão</span></li></ul></div>
+      </div>
+    </section>
+
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">🤖 O que IA NÃO consegue fazer</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Jensen é direto sobre os <strong class="text-purple-400">buracos</strong> que IA ainda não preenche. E ele não está sendo otimista — ele está olhando pro próprio produto.</p>
+
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600"><h4 class="font-semibold mb-1">Resolver problemas mal-definidos</h4><p class="text-neutral-300 text-sm">IA precisa do problema bem formulado. Quem formula, julga critério, decide o que é "resolvido" — é humano.</p></div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600"><h4 class="font-semibold mb-1">Trabalhar em equipe de verdade</h4><p class="text-neutral-300 text-sm">Negociar, discordar respeitosamente, ler temperatura emocional do grupo, ceder e cobrar — IA não tem skin in the game.</p></div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600"><h4 class="font-semibold mb-1">Diagnosticar com presença</h4><p class="text-neutral-300 text-sm">Médico, advogado, professor, terapeuta, líder — diagnóstico envolve estar lá. Olhar nos olhos. Captar o que o sistema não captura.</p></div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">4</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600"><h4 class="font-semibold mb-1">Avaliar julgamento contextual</h4><p class="text-neutral-300 text-sm">"Isto é bom o suficiente?" "Vale o risco?" "É o momento?" Julgamento é trade-off entre valores — exige hierarquia humana.</p></div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">5</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600"><h4 class="font-semibold mb-1">Conectar pontos distantes</h4><p class="text-neutral-300 text-sm">Insight cross-domain. Pegar padrão da biologia e aplicar em finanças. IA é boa dentro de domínio, fraca em saltos analógicos.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">🧠 Inteligência commodity vs. caráter raro</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Lei econômica básica: <strong class="text-purple-400">o que é abundante perde valor, o que é escasso ganha valor</strong>. Petróleo era escasso, virou commodity. Software era escasso, virou commodity. Inteligência analítica era escassa — virou commodity em 2024.</p>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-purple-400 mb-4">🧠 Migração de valor</h3>
+        <p class="text-neutral-300 mb-4">Onde o valor migrou nos últimos 18 meses:</p>
+        <ul class="space-y-2 text-neutral-300">
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>De: produzir resposta</strong> → <strong>Para: fazer pergunta certa</strong></span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>De: executar tarefa</strong> → <strong>Para: orquestrar agentes</strong></span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>De: dominar conteúdo</strong> → <strong>Para: dominar contexto</strong></span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>De: pensar mais rápido</strong> → <strong>Para: julgar melhor</strong></span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>De: entregar output</strong> → <strong>Para: gerar confiança</strong></span></li>
+        </ul>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4">📊 O escasso virou abundante</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li><strong>1 GPT-5 turn</strong> — custa ~US$ 0,01 e responde como sênior júnior</li>
+          <li><strong>Tradução técnica</strong> — caiu 90% em valor desde 2022</li>
+          <li><strong>Código boilerplate</strong> — gerado em segundos</li>
+          <li><strong>Análise de dados</strong> — comoditizada por agentes</li>
+          <li><strong>O que sobe?</strong> — bom gosto, julgamento, vínculo, tese</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">🪞 O que sobra de você</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Exercício direto: <strong class="text-purple-400">faça uma lista das suas 10 competências profissionais</strong>. Agora, risque tudo que IA já faz tão bem ou melhor que você. O que sobrou é seu núcleo insubstituível — e é nele que você vai investir os próximos 5 anos.</p>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-purple-400 mb-4">🪞 Inventário de núcleo</h3>
+        <p class="text-neutral-300 mb-4">Pergunta-filtro para cada competência:</p>
+        <ul class="space-y-2 text-neutral-300">
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span>Um modelo bom faz isto agora? Se sim, risca.</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span>Sobra valor depois que IA executa o "como"? Se sim, marca.</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span>Envolve presença, julgamento, vínculo, gosto? Se sim, dobra.</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span>Cresce com a sua história única? Se sim, é seu núcleo.</span></li>
+        </ul>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3">💡 Dica prática</h3>
+        <p class="text-neutral-300">Pegue caderno físico. Escreve as 10 competências. Risca. Não precisa mostrar pra ninguém — esse exercício é desconfortável de propósito. O que sobrou na página é o que você vai apresentar ao mundo nos próximos 10 anos.</p>
+      </div>
+    </section>
+
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">❤️ Manifesto inicial</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Você sai do Módulo 3.1 com a <strong class="text-purple-400">primeira versão do seu manifesto</strong>. Não é o final — esse vem no Módulo 3.6. É a bússola provisória que vai te guiar pelos próximos 5 módulos da trilha. Identidade declarada por escrito vira compromisso.</p>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-purple-400 mb-4">❤️ Estrutura do manifesto v1</h3>
+        <p class="text-neutral-300 mb-4">3 frases. Caneta no papel. Sem editar muito.</p>
+        <ul class="space-y-2 text-neutral-300">
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">1.</span><span><strong>O que IA jamais fará por mim:</strong> ___________</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">2.</span><span><strong>O valor humano que eu carrego:</strong> ___________</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">3.</span><span><strong>Em 5 anos, quero ser conhecido por:</strong> ___________</span></li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6"><h4 class="font-bold text-emerald-400 mb-4">✓ Faça</h4><ul class="space-y-2 text-neutral-300"><li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Escreva à mão, papel físico</span></li><li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Frases curtas, na primeira pessoa</span></li><li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Releia em voz alta</span></li><li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Guarde — vai revisitar no 3.6</span></li></ul></div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6"><h4 class="font-bold text-red-400 mb-4">✗ Evite</h4><ul class="space-y-2 text-neutral-300"><li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Pedir ChatGPT pra escrever por você</span></li><li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Frases prontas de LinkedIn</span></li><li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Querer que fique perfeito de cara</span></li><li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Comparar com o de outros</span></li></ul></div>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-purple-900/40 via-dark-800 to-dark-800 rounded-xl border border-purple-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6">🎯 Resumo do Módulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">Inteligência virou commodity</strong> <span class="text-neutral-400">— Jensen Huang declarou a inversão de valor</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">Empatia tem menor substituição</strong> <span class="text-neutral-400">— WEF 2025 confirma com dado, não achismo</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">IA falha em 5 áreas</strong> <span class="text-neutral-400">— problemas mal-definidos, equipe, diagnóstico, julgamento, conexões</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">Valor migrou</strong> <span class="text-neutral-400">— de produzir resposta para fazer pergunta certa</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">Inventário pessoal</strong> <span class="text-neutral-400">— riscar o que IA faz, dobrar o que sobra</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">Manifesto v1</strong> <span class="text-neutral-400">— 3 frases que viram bússola da trilha</span></div></div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-purple-400 mb-2">Próximo Módulo:</h3>
+          <p class="text-neutral-300">3.2 — Os 5 pilares de Goleman na era IA</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="index.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Voltar à trilha</a>
+          <a href="modulo-3-2.html" class="flex-1 text-center px-6 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-500 transition-colors">Próximo módulo →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="border-t border-dark-600 py-8 mt-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>PROF 2030 · Trilha 3 · Módulo 3.1 · 2026</p>
+    </div>
+  </footer>
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) { themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark'); } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => { themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden'); html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light'); });
+  </script>
+</body>
+</html>

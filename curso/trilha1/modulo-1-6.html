@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 1.6 — Projeto: Seu Agente Pessoal | PROF 2030</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } } }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-500\/20 { background-color: rgba(5, 150, 105, 0.12); }
+    html:not(.dark) .bg-emerald-500\/10 { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5, 150, 105, 0.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185, 28, 28, 0.08); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185, 28, 28, 0.25); }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(37, 99, 235, 0.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37, 99, 235, 0.25); }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🧭</span>
+            <span class="font-bold text-lg hidden sm:inline">PROF 2030</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-emerald-400 bg-emerald-500/10"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Comunicar</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Empreender</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Liderar</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-emerald-400">Início</a>
+      <span>/</span>
+      <a href="index.html" class="hover:text-emerald-400">Trilha 1</a>
+      <span>/</span>
+      <span class="text-emerald-400">Módulo 1.6</span>
+    </div>
+  </nav>
+
+  <header class="bg-gradient-to-br from-emerald-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-emerald-500/20 text-emerald-400 text-xs font-semibold rounded-full mb-4">MÓDULO 1.6</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🚀 Projeto: Seu Agente Pessoal</h1>
+      <p class="text-lg text-neutral-300 max-w-3xl mb-4">Entrega final da Trilha 1: você sai com um agente funcionando que resolve UMA dor real da sua rotina.</p>
+      <blockquote class="border-l-4 border-emerald-500/50 pl-4 italic text-neutral-400 max-w-3xl">"Pequena ação repetida derrota grande plano não-executado." <span class="block text-sm mt-1 not-italic text-neutral-500">— princípio aplicado</span></blockquote>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">~60</div><div class="text-xs text-neutral-400">Minutos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">Prático</div><div class="text-xs text-neutral-400">Nível</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">Projeto</div><div class="text-xs text-neutral-400">Tipo</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">🎯 Encontrando UMA dor real</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">A regra mais importante deste projeto: <strong class="text-emerald-400">UMA dor</strong>, não três. Tarefa repetitiva, chata, frequente, e com input/output mensuráveis. Se você tentar resolver 5 problemas, vai entregar zero. Critérios pra escolher: <em>frequência</em> (acontece toda semana?), <em>dor</em> (te incomoda mesmo?), <em>clareza</em> (consegue descrever em 1 frase?). Antes de qualquer linha de automação, defina a <strong class="text-emerald-400">métrica</strong> — tempo gasto hoje, número de erros, ou volume processado. Sem baseline, você nunca prova ganho.</p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4">🎯 Bons candidatos para 1º agente</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span>Triagem e categorização de e-mails recebidos</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span>Resumo automático de reuniões (transcrição → resumo + ações)</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span>Geração de drafts de resposta a clientes</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span>Relatórios semanais a partir de planilhas</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span>Busca e organização de informação dispersa</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span>Pré-preenchimento de propostas comerciais</span></li>
+        </ul>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3">💡 Dica prática</h3>
+        <p class="text-neutral-300">Cronometre <em>esta semana</em> 3 tarefas candidatas. Anote tempo gasto. A mais longa e mais chata vence. Esse número vira sua baseline pra medir ganho.</p>
+      </div>
+    </section>
+
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">✏️ Escrevendo a especificação</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Antes de construir, escreva uma <strong class="text-emerald-400">spec mínima</strong> de 1 página. Sem spec, agentes viram bagunça em 2 dias. A spec responde 6 perguntas: <em>qual o objetivo?</em>, <em>quais as entradas?</em>, <em>quais as saídas?</em>, <em>quais ferramentas precisa acessar?</em>, <em>quais os limites operacionais?</em>, <em>como sei se deu certo?</em> (critério de sucesso). Esse documento curto vale mais que dezenas de tentativas no escuro.</p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4">📋 Template de spec mínima</h3>
+        <ul class="space-y-3 text-neutral-300">
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">▸</span><span><strong>Objetivo (1 frase):</strong> "Triar e-mails do dia em 4 categorias e gerar drafts para os urgentes"</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">▸</span><span><strong>Entradas:</strong> caixa Gmail, últimos 24h, somente unread</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">▸</span><span><strong>Saídas:</strong> tabela com classificação + drafts em pasta "Drafts/IA"</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">▸</span><span><strong>Ferramentas:</strong> Gmail API (read), Claude/GPT, Drive (write)</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">▸</span><span><strong>Limites:</strong> nunca enviar e-mail; nunca apagar; só rotular</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">▸</span><span><strong>Critério de sucesso:</strong> 80% das classificações corretas no review humano</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">🏗️ Construindo no n8n</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Você vai usar o <strong class="text-emerald-400">n8n</strong> — plataforma open-source de automação visual ideal pra primeiros agentes. Estrutura básica: <em>Trigger</em> (o que dispara o workflow), <em>Nodes de coleta</em> (puxa dados das fontes), <em>Node de IA</em> (Claude/GPT com seu prompt), <em>Lógica</em> (IFs, switches, branches), <em>Nodes de saída</em> (escreve o resultado). Trabalho em camadas: faça o caminho mais simples funcionar primeiro, depois adicione robustez.</p>
+
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold mb-1">Trigger</h4>
+            <p class="text-neutral-300 text-sm">Schedule (toda manhã 8h), webhook, ou manual. Comece manual pra testar.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold mb-1">Coleta de dados</h4>
+            <p class="text-neutral-300 text-sm">Gmail node, Sheets node, HTTP Request. Filtre antes de mandar pra IA — economiza tokens.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold mb-1">Node de IA com prompt orquestrado</h4>
+            <p class="text-neutral-300 text-sm">System prompt + few-shot + dado da iteração. Aqui mora a inteligência.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">4</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold mb-1">Lógica e branching</h4>
+            <p class="text-neutral-300 text-sm">IF para casos diferentes (urgente vs. não-urgente), error handling para falhas.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">5</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold mb-1">Output</h4>
+            <p class="text-neutral-300 text-sm">Salva em Sheets/Notion/Slack. Comece sem ações destrutivas — só leitura e escrita em rascunho.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">🧪 Testando e iterando</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Construir é 30% — <strong class="text-emerald-400">testar e iterar</strong> é 70%. Loop: rode com 5-10 casos reais, observe o que falhou, ajuste, rode de novo. Mantenha um <strong class="text-emerald-400">diário de erros</strong> — toda falha vai pra lista, e você decide se ajusta o prompt, adiciona um node, ou aceita como caso de exceção. Não tente prever todos os casos antes de rodar; deixe os casos aparecerem e ajuste pontualmente.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Boas práticas de teste</h4>
+          <ul class="space-y-2 text-neutral-300">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Comece com 5-10 casos reais (não inventados)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Inclua casos de borda (e-mail estranho, dado faltando)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Diário de erros versionado</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Ajuste localizado: 1 mudança por iteração</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Anti-padrões</h4>
+          <ul class="space-y-2 text-neutral-300">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Tentar resolver 10 casos com 1 mudança grande</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Testar só com casos felizes</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Não documentar o erro — só "tentar de novo"</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Adiar ativação real até ficar "perfeito"</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">📊 Medindo o ganho</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Sem medição, agente vira hobby. Quatro métricas suficientes: <strong class="text-emerald-400">tempo</strong> (antes vs. depois), <strong class="text-emerald-400">custo</strong> (R$ em API + sua hora), <strong class="text-emerald-400">taxa de erro</strong> (% que precisou ajuste manual) e <strong class="text-emerald-400">satisfação</strong> (você ou cliente sente diferença?). Calcule o <strong class="text-emerald-400">ROI</strong> simples: tempo economizado × seu valor/hora − custos do agente. Esse número é o combustível pra continuar (e a prova pra vender pra outros — ponte pra Trilha 2).</p>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4">📊 Tabela típica de baseline x pós-agente</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li><strong>Tempo/semana antes:</strong> ex. 4h triando e-mail manualmente</li>
+          <li><strong>Tempo/semana depois:</strong> ex. 30 min revisando classificação do agente</li>
+          <li><strong>Ganho líquido:</strong> ~3,5h/semana = ~14h/mês = ~168h/ano</li>
+          <li><strong>Custo do agente:</strong> ~R$ 30/mês em API + setup inicial</li>
+          <li><strong>ROI claro:</strong> centenas de horas vs. dezenas de reais</li>
+        </ul>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3">💡 Dica prática</h3>
+        <p class="text-neutral-300">Tire um print do "antes" e do "depois". Salve em pasta "Vitórias IA". Em 6 meses, esse arquivo vai ser sua biblioteca de cases — material de portfólio e venda.</p>
+      </div>
+    </section>
+
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">🚀 Próximos passos — escalando</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Você fechou a Trilha 1 com um agente real. Próximo passo é o salto da Trilha 2: <strong class="text-emerald-400">o que serviu pra você pode virar produto pra outros</strong>. Padrão clássico: você resolve sua dor, percebe que outros 100 profissionais têm a mesma dor, empacota o agente como serviço/produto e cobra. Da Trilha 1 (uso pessoal) pra Trilha 2 (empreender) é replicar o modelo, empacotá-lo e vendê-lo. Cada agente seu é uma <em>oferta em potencial</em>.</p>
+
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold mb-1">Replicação</h4>
+            <p class="text-neutral-300 text-sm">Outros têm a mesma dor? Quantos? Onde estão? Validação rápida em 5 conversas.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold mb-1">Empacotamento</h4>
+            <p class="text-neutral-300 text-sm">Tirar dependências do seu setup pessoal. Documentação. Onboarding simplificado.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold mb-1">Primeiro cliente externo</h4>
+            <p class="text-neutral-300 text-sm">Beta gratuito ou de baixo custo pra validar valor real fora do seu uso. Coletar feedback agressivamente.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">4</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold mb-1">Precificação e modelo</h4>
+            <p class="text-neutral-300 text-sm">Hora avulsa? Mensal? Por automação entregue? Trilha 2 destrincha cada caminho.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4">🎓 Você completou a Trilha 1</h3>
+        <p class="text-neutral-300 mb-4">Saiu do despertar até a entrega de um agente que funciona pra você. Agora vem a parte de transformar capacidade técnica em ativo econômico — sua Trilha 2.</p>
+        <ul class="space-y-2 text-neutral-300">
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">✓</span><span>Você sabe especificar tarefas com clareza</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">✓</span><span>Você sabe orquestrar contexto rico</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">✓</span><span>Você sabe construir, testar e medir agentes</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">✓</span><span>Você tem 1 case real e mensurável da sua rotina</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-emerald-900/40 via-dark-800 to-dark-800 rounded-xl border border-emerald-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6">🎯 Resumo do Módulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">UMA dor real</strong> <span class="text-neutral-400">— frequente, mensurável, com baseline antes de automatizar.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">Spec mínima</strong> <span class="text-neutral-400">— objetivo, entradas, saídas, ferramentas, limites, critério de sucesso.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">Construção em camadas no n8n</strong> <span class="text-neutral-400">— trigger, coleta, IA, lógica, output.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">Iteração disciplinada</strong> <span class="text-neutral-400">— diário de erros, ajuste localizado, casos reais.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">Métrica clara de ganho</strong> <span class="text-neutral-400">— tempo, custo, erro, satisfação, ROI.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">Ponte pra Trilha 2</strong> <span class="text-neutral-400">— sua solução pessoal pode virar produto.</span></div></div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-emerald-400 mb-2">Próxima Trilha:</h3>
+          <p class="text-neutral-300">Trilha 2 — Empreender com IA</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="modulo-1-5.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Módulo anterior</a>
+          <a href="../trilha2/index.html" class="flex-1 text-center px-6 py-3 bg-emerald-600 text-white rounded-lg font-semibold hover:bg-emerald-500 transition-colors">Ir para Trilha 2 — Empreender →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>PROF 2030 · Trilha 1 · Módulo 1.6 · 2026</p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) { themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark'); } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => { themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden'); html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light'); });
+  </script>
+</body>
+</html>

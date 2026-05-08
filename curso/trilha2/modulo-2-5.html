@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 2.5 — Precificar e vender automações | PROF 2030</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } } }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37, 99, 235, 0.12); }
+    html:not(.dark) .bg-blue-500\/10 { background-color: rgba(37, 99, 235, 0.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37, 99, 235, 0.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185, 28, 28, 0.08); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185, 28, 28, 0.25); }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-900\/20 { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5, 150, 105, 0.25); }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🧭</span>
+            <span class="font-bold text-lg hidden sm:inline">PROF 2030</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Comunicar</span></a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-blue-400 bg-blue-500/10"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Empreender</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Liderar</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-blue-400">Início</a>
+      <span>/</span>
+      <a href="index.html" class="hover:text-blue-400">Trilha 2</a>
+      <span>/</span>
+      <span class="text-blue-400">Módulo 2.5</span>
+    </div>
+  </nav>
+  <header class="bg-gradient-to-br from-blue-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-semibold rounded-full mb-4">MÓDULO 2.5</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">💰 Precificar e vender automações</h1>
+      <p class="text-lg text-neutral-300 max-w-3xl mb-4">3 modelos: projeto, recorrência, royalty. Como cobrar pelo VALOR (não pelas horas). Onde achar os primeiros clientes.</p>
+      <blockquote class="border-l-4 border-blue-500/50 pl-4 italic text-neutral-400 max-w-3xl">"Se sua automação economiza R$10k/mês pra empresa, cobrar R$3k/mês é barato pra ela."<span class="block text-sm mt-1 not-italic text-neutral-500">— princípio de pricing</span></blockquote>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">~50</div><div class="text-xs text-neutral-400">Minutos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">Comercial</div><div class="text-xs text-neutral-400">Nível</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">Vendas</div><div class="text-xs text-neutral-400">Tipo</div></div>
+      </div>
+    </div>
+  </header>
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">💰 3 modelos de cobrança</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Existem três jeitos de cobrar automação, cada um com seu papel. <strong class="text-blue-400">Projeto</strong> (valor único, R$5-30k de setup) gera caixa rápido mas não escala. <strong class="text-blue-400">Recorrência</strong> (mensalidade R$1-10k/mês) constrói MRR previsível. <strong class="text-blue-400">Royalty / success-fee</strong> (% sobre resultado) é onde o ticket explode quando o cliente confia. <strong class="text-blue-400">Combinação ideal: setup fee pequeno + recorrência</strong>.</p>
+
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold mb-1">Projeto (one-shot)</h4><p class="text-neutral-300 text-sm">R$5-30k pelo setup completo. Bom pra caixa imediato e portfólio. Ruim pra previsibilidade. Use como porta de entrada.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold mb-1">Recorrência (MRR)</h4><p class="text-neutral-300 text-sm">R$1-10k/mês cobrindo manutenção, melhorias, hosting, suporte. Constrói receita previsível. Cliente fica preso ao seu serviço.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold mb-1">Royalty / success-fee</h4><p class="text-neutral-300 text-sm">% sobre resultado mensurável (vendas geradas, hora economizada, lead qualificado). Alinhamento perfeito. Ticket pode passar R$20k/mês.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3">💡 Combinação favorita</h3>
+        <p class="text-neutral-300">Setup fee pequeno (R$3-5k pra cobrir trabalho inicial e filtrar curioso) + recorrência (R$1-3k/mês). Ganha caixa imediato + MRR. É o modelo de quase toda agência boa.</p>
+      </div>
+    </section>
+
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">🎯 Cobrar pelo valor, não pelas horas</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">A diferença entre <strong class="text-blue-400">cobrar R$300 e cobrar R$3.000</strong> pela mesma automação não está na automação — está em como você posiciona o valor. Se a automação economiza R$10k/mês pra empresa, cobrar R$3k/mês é <strong class="text-blue-400">barato pra ela</strong> — é um múltiplo de 3x de retorno. Cobrar por hora penaliza quem é eficiente.</p>
+
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4">📐 Como argumentar valor</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>Quantifique o ganho:</strong> "Hoje vocês gastam X horas/mês com isso. Minha automação devolve essas horas."</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>Traduza em R$:</strong> "X horas × R$ valor da hora = economia anual R$".</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>Posicione o preço:</strong> "Cobro R$Y, ou seja, payback em N meses. Depois é lucro."</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>Inclua risco:</strong> "Garanto resultado em 30 dias ou refund." Aumenta conversão e justifica preço.</span></li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Pricing por valor</h4>
+          <ul class="space-y-2 text-neutral-300">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Cliente paga pelo resultado, não pelo tempo</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Eficiência sua = mais margem, não menos receita</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Conversa muda de "horas" pra "ROI"</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Pricing por hora</h4>
+          <ul class="space-y-2 text-neutral-300">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Você é punido por ser rápido</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Cliente compara com freela R$50/h em outro país</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Conversa vira "quantas horas?"</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">📞 Onde achar os primeiros clientes</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">A primeira venda quase nunca vem de "marketing inbound" — vem de <strong class="text-blue-400">redes que você já tem</strong>. Quatro canais que funcionam: <strong class="text-blue-400">LinkedIn</strong> (cold outbound + warm), <strong class="text-blue-400">grupos de WhatsApp</strong> (de profissão / nicho), <strong class="text-blue-400">comunidades como INEMA.VIP</strong>, <strong class="text-blue-400">indicação de quem já te conhece</strong>. Conteúdo público é pré-venda — encurta o ciclo.</p>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4">🎯 Os 4 canais que funcionam pra começar</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li><strong>1. LinkedIn outbound:</strong> 30 mensagens/dia bem segmentadas pra dor que você resolve. Sem pitch — pergunta.</li>
+          <li><strong>2. WhatsApp / grupos de nicho:</strong> entre antes em comunidades de gestores, contadores, agências. Ajude antes de vender.</li>
+          <li><strong>3. INEMA.VIP / comunidades de IA:</strong> quem está lá já sabe o valor — ciclo curto. Apresente caso, não produto.</li>
+          <li><strong>4. Indicação:</strong> avise 50 pessoas da sua rede pessoal o que você passou a fazer. Ofereça desconto pra quem indicar.</li>
+        </ul>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3">💡 Conteúdo como pré-venda</h3>
+        <p class="text-neutral-300">Posta 3x/semana sobre dor que você resolve (não sobre você). Quando contatar prospect, ele já viu seu nome — taxa de resposta dobra ou triplica.</p>
+      </div>
+    </section>
+
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">📝 Anatomia da proposta</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Proposta vencedora cabe em <strong class="text-blue-400">1 página</strong> e segue 8 elementos rígidos. Não invente. Não enfeite. Cliente lê em 3 minutos e decide. Documentos de 20 páginas com proposta no fim mostram que você não respeita o tempo do cliente.</p>
+
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold mb-1">Dor</h4><p class="text-neutral-300 text-sm">"Vocês me disseram que X é doloroso/caro/lento." Em 1 frase. Precisa do cliente reconhecer.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold mb-1">Solução</h4><p class="text-neutral-300 text-sm">"Vou implementar uma automação que faz Y." Em 1 frase. Nada técnico.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold mb-1">Como funciona</h4><p class="text-neutral-300 text-sm">3-5 bullets de fluxo. Sem código, sem nome de ferramenta. Linguagem de negócio.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">4</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold mb-1">ROI estimado</h4><p class="text-neutral-300 text-sm">"Economia esperada: R$X/mês baseado em Y horas economizadas." Realista, conservador.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">5</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold mb-1">Escopo (in / out)</h4><p class="text-neutral-300 text-sm">O que ENTRA e o que NÃO entra. Crucial pra evitar scope creep.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">6</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold mb-1">Preço</h4><p class="text-neutral-300 text-sm">Setup R$X + mensalidade R$Y. Sem "a partir de". Sem 5 opções. 1 valor cravado.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">7</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold mb-1">Timeline</h4><p class="text-neutral-300 text-sm">"Entrega em N dias após assinatura." Prazo cravado. Sem "depende".</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">8</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold mb-1">CTA</h4><p class="text-neutral-300 text-sm">"Pra fechar, responda OK e te mando o contrato." Direto. Não deixa cliente decidir o próximo passo.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">🚫 Erros que matam venda</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Cinco erros recorrentes que afundam propostas. Todos saem do mesmo vício: <strong class="text-blue-400">querer parecer impressionante em vez de resolver dor</strong>.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Os 5 erros</h4>
+          <ul class="space-y-2 text-neutral-300">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span><strong>Falar de IA antes da dor</strong> — cliente não compra IA, compra resultado</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span><strong>Cobrar barato</strong> — gera dúvida sobre qualidade e atrai cliente ruim</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span><strong>Escopo aberto</strong> — sem "out of scope" você trabalha de graça em mudanças</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span><strong>Sem prazo</strong> — projeto se arrasta, cliente esquece, você não cobra</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span><strong>Sem garantia</strong> — risco fica todo do cliente, conversão cai</span></li>
+          </ul>
+        </div>
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Antídoto</h4>
+          <ul class="space-y-2 text-neutral-300">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Comece pela dor que ELE descreveu</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Cobre o que faz sentido pelo valor</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Lista clara de "in scope" e "out of scope"</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Prazo cravado, com cláusula de delay por culpa do cliente</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Garantia condicional ("se não bater X em 30d, refund")</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">🇧🇷 Casos brasileiros</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Três casos reais de quem está faturando bem com automação no Brasil. Não são bilhões — são casos <strong class="text-blue-400">replicáveis</strong> em 6-12 meses por quem leva a sério.</p>
+
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4">📊 3 modelos vivos no BR</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>Agência boutique:</strong> setup R$15k + R$3k/mês de manutenção. 8 clientes = R$24k MRR + R$120k/ano de setups.</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>Freelancer especializado:</strong> R$80k em 3 meses fazendo automação de qualificação de lead pra 4 clientes B2B.</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>Consultor que migrou:</strong> ex-CLT virou consultor independente. Em 12 meses substituiu salário CLT por recorrência de 5 contas.</span></li>
+        </ul>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3">💡 Padrão por trás dos 3</h3>
+        <p class="text-neutral-300">Todos focaram em UM nicho (não "todo mundo"), construíram setup fee + recorrência, e usaram conteúdo público pra encurtar ciclo de venda. Nenhum começou com "vou ser referência em IA" — começaram com "vou resolver dor X em nicho Y".</p>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-blue-900/40 via-dark-800 to-dark-800 rounded-xl border border-blue-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6">🎯 Resumo do Módulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">3 modelos: projeto, recorrência, royalty</strong> <span class="text-neutral-400">— ideal é setup fee + recorrência.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Cobrar pelo valor, não por hora</strong> <span class="text-neutral-400">— se economiza R$10k, R$3k é barato.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">4 canais pra primeiros clientes</strong> <span class="text-neutral-400">— LinkedIn, grupos, comunidades, indicação.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Proposta de 1 página com 8 elementos</strong> <span class="text-neutral-400">— dor → solução → como → ROI → escopo → preço → prazo → CTA.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">5 erros clássicos</strong> <span class="text-neutral-400">— IA antes da dor, barato, escopo aberto, sem prazo, sem garantia.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Casos BR replicáveis</strong> <span class="text-neutral-400">— foco em nicho, setup + MRR, conteúdo como pré-venda.</span></div></div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-blue-400 mb-2">Próximo Módulo:</h3>
+          <p class="text-neutral-300">2.6 — Projeto Final: você sai com automação vendável, oferta e plano de 90 dias.</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="index.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Voltar à trilha</a>
+          <a href="modulo-2-6.html" class="flex-1 text-center px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 transition-colors">Próximo módulo →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="border-t border-dark-600 py-8 mt-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>PROF 2030 · Trilha 2 · Módulo 2.5 · 2026</p>
+    </div>
+  </footer>
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) { themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark'); } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => { themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden'); html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light'); });
+  </script>
+</body>
+</html>

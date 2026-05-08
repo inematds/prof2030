@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 2.4 — Stack econômica do solo | PROF 2030</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } } }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37, 99, 235, 0.12); }
+    html:not(.dark) .bg-blue-500\/10 { background-color: rgba(37, 99, 235, 0.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37, 99, 235, 0.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185, 28, 28, 0.08); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185, 28, 28, 0.25); }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-900\/20 { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5, 150, 105, 0.25); }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🧭</span>
+            <span class="font-bold text-lg hidden sm:inline">PROF 2030</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Comunicar</span></a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-blue-400 bg-blue-500/10"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Empreender</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Liderar</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-blue-400">Início</a>
+      <span>/</span>
+      <a href="index.html" class="hover:text-blue-400">Trilha 2</a>
+      <span>/</span>
+      <span class="text-blue-400">Módulo 2.4</span>
+    </div>
+  </nav>
+  <header class="bg-gradient-to-br from-blue-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-semibold rounded-full mb-4">MÓDULO 2.4</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">💸 Stack econômica do solo</h1>
+      <p class="text-lg text-neutral-300 max-w-3xl mb-4">US$3-12k/ano (solo) vs. US$1,2-1,4M (equipe 10p). Como montar a infra mínima rentável e em que momento atualizar cada peça.</p>
+      <blockquote class="border-l-4 border-blue-500/50 pl-4 italic text-neutral-400 max-w-3xl">"Iniciante compra ferramenta antes do problema. Profissional compra DEPOIS do problema aparecer."<span class="block text-sm mt-1 not-italic text-neutral-500">— princípio</span></blockquote>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">~40</div><div class="text-xs text-neutral-400">Minutos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">Estratégico</div><div class="text-xs text-neutral-400">Nível</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">Plano</div><div class="text-xs text-neutral-400">Tipo</div></div>
+      </div>
+    </div>
+  </header>
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">💸 A economia que choca</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Faça a comparação fria. Equipe tradicional de <strong class="text-blue-400">10 pessoas</strong> (1 dev sênior, 1 ops, 1 mkt, 1 vendas, 1 produto, 5 mid) custa <strong class="text-blue-400">US$1,2-1,4M/ano</strong> entre salários, encargos, ferramentas e infra. Stack solo equivalente — IA + automações + cloud — sai por <strong class="text-blue-400">US$3-12k/ano</strong>. Redução de 95-98%. Não é desconto: é <strong class="text-blue-400">custo marginal próximo de zero</strong>.</p>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4">📊 Comparação fria</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li><strong>Equipe 10p:</strong> ~US$1,2-1,4M/ano (salários + encargos + ferramentas + escritório)</li>
+          <li><strong>Stack solo:</strong> ~US$3-12k/ano (IA + n8n + cloud + 5-7 SaaS essenciais)</li>
+          <li><strong>Redução:</strong> 95-98% do custo operacional</li>
+          <li><strong>Limite:</strong> não é tudo que dá pra fazer solo — mas é muito mais do que se pensava em 2022</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">🛠️ As 7 ferramentas essenciais</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Stack mínima viável pra solopreneur de automação em 2026. Essas <strong class="text-blue-400">7 ferramentas</strong> cobrem 90% dos casos. Tudo que está fora delas, segure pra depois — comprar ferramenta antes do problema vira ralo de dinheiro e atenção.</p>
+
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4">📦 As 7 essenciais (faixa de preço BR)</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>1. LLM (Claude/GPT/Gemini):</strong> US$20/mês plan + créditos API (~R$50-300/mês conforme uso)</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>2. n8n (automação):</strong> self-host R$30/mês ou cloud US$20/mês</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>3. Vercel (front/landing):</strong> grátis até escalar, depois US$20/mês</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>4. Supabase (banco + auth):</strong> grátis até 500MB, depois US$25/mês</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>5. Stripe + PIX (pagamento):</strong> grátis, taxa por transação. Hotmart como alternativa BR.</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>6. Notion (CRM + docs + projeto):</strong> grátis ou US$10/mês</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>7. Zapier ou Make (cola entre apps):</strong> grátis ou US$20/mês — usa quando n8n é overkill</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">🎯 O que comprar agora vs. esperar</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Princípio <strong class="text-blue-400">JIT (Just-In-Time)</strong>: ferramenta entra quando o problema aparece, não antes. Operar em modelo <strong class="text-blue-400">pull, não push</strong> — você puxa a ferramenta pra resolver dor real. Isso exige <strong class="text-blue-400">disciplina de gasto</strong> porque o marketing das SaaS é desenhado pra você comprar antecipado.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Comprar AGORA</h4>
+          <ul class="space-y-2 text-neutral-300">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>1 LLM bom (US$20/mês) — uso diário</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>n8n cloud trial — testar 14 dias antes de migrar</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Domínio + Vercel grátis pra landing</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Notion plan free</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ ESPERAR</h4>
+          <ul class="space-y-2 text-neutral-300">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>CRM caro (HubSpot/Salesforce) — Notion basta com 0-50 clientes</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Ferramenta de e-mail marketing pago — só quando tiver lista real</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Editor de vídeo pago — CapCut grátis até dar problema</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Curso ou mentoria genérica — pague depois de validar tese</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">⚡ Reduzir custo sem perder potência</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">A diferença entre uma stack de R$200/mês e uma de R$2.000/mês <strong class="text-blue-400">não está na qualidade — está em técnica</strong>. Quatro alavancas: <strong class="text-blue-400">model routing</strong> (use modelo barato no que não precisa do top), <strong class="text-blue-400">prompt caching</strong> (Anthropic e OpenAI cobram menos quando contexto é repetido), <strong class="text-blue-400">batch APIs</strong> (50% off pra processamento não-urgente) e <strong class="text-blue-400">self-host</strong> (n8n, Supabase).</p>
+
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4">🔧 4 alavancas técnicas</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>Model routing:</strong> Haiku/mini pra classificação simples, Sonnet/4 pra raciocínio. Economia 5-20x.</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>Prompt caching:</strong> instruções fixas + base de conhecimento em cache → 90% off no input repetido.</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>Batch APIs:</strong> tasks que podem esperar 24h saem por metade do preço.</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>Self-host:</strong> n8n + Supabase em VPS de R$30/mês roda projetos que custariam R$500/mês em SaaS.</span></li>
+        </ul>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3">💡 Conta de padaria</h3>
+        <p class="text-neutral-300">Mesma operação que custaria R$2.000/mês "fácil" pode rodar a R$200/mês com essas 4 técnicas. Diferença anual: R$21.600 — ou seja, um cliente recorrente extra economizado em custo.</p>
+      </div>
+    </section>
+
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">🇧🇷 Stack realista pra Brasil</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">No Brasil tem três fricções específicas: <strong class="text-blue-400">câmbio</strong> (cobranças USD pesam quando dólar passa de R$5), <strong class="text-blue-400">cartão recusado</strong> (operadoras travam compras internacionais frequentes) e <strong class="text-blue-400">recibo / NF</strong> (cliente PJ exige). Solução prática: <strong class="text-blue-400">Hotmart/Kiwify</strong> pra venda BR, <strong class="text-blue-400">Wise</strong> pra pagar SaaS USD, <strong class="text-blue-400">PIX</strong> em tudo que der.</p>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4">🇧🇷 Adaptações que importam</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li><strong>Pagamento BR:</strong> PIX (instantâneo, zero taxa) → Hotmart/Kiwify pra infoproduto → Stripe BR pra recorrência B2B</li>
+          <li><strong>SaaS estrangeiro:</strong> Wise (cartão virtual em USD) ou cartão internacional dedicado, sem conta principal</li>
+          <li><strong>Hospedagem:</strong> n8n self-hosted em Hetzner (Alemanha) — R$30/mês — paga em USD, mas estável</li>
+          <li><strong>NF eletrônica:</strong> Bling, Conta Azul, ou contador. Cliente PJ não paga sem NF.</li>
+          <li><strong>Boleto:</strong> ainda existe e é grande. Asaas, Mercado Pago, Iugu cobram boleto por taxa fixa.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">📋 Sua planilha de stack</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Sem auditoria mensal, a stack vira <strong class="text-blue-400">cemitério de assinaturas esquecidas</strong>. Crie uma planilha simples com 5 colunas e revise no dia 1 de cada mês. Cancela tudo que não foi usado nos últimos 30 dias. <strong class="text-blue-400">Disciplina de SaaS é disciplina de margem.</strong></p>
+
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4">📋 Template de auditoria mensal</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>Ferramenta:</strong> nome (n8n, Vercel, Claude...)</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>Função:</strong> pra que serve, em uma frase</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>Custo:</strong> R$/mês ou US$/mês</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>Alternativa:</strong> que ferramenta substituiria, qual o gap se trocar</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>Status:</strong> ATIVO (uso semanal), DORMENTE (revisar), CANCELAR (não usei mês passado)</span></li>
+        </ul>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3">💡 Regra do "30 dias sem uso"</h3>
+        <p class="text-neutral-300">Se ferramenta não foi aberta nos últimos 30 dias, cancela. Se faltar, você assina de novo (a maioria das SaaS topa). Custo de re-assinar é menor que carregar 5 assinaturas dormentes por 12 meses.</p>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-blue-900/40 via-dark-800 to-dark-800 rounded-xl border border-blue-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6">🎯 Resumo do Módulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">US$3-12k/ano vs. US$1,2M</strong> <span class="text-neutral-400">— stack solo substitui equipe de 10 com 95-98% de redução.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">7 ferramentas essenciais</strong> <span class="text-neutral-400">— LLM, n8n, Vercel, Supabase, Stripe/PIX, Notion, Zapier/Make.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">JIT — just in time</strong> <span class="text-neutral-400">— compre depois do problema aparecer, não antes.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">4 alavancas técnicas</strong> <span class="text-neutral-400">— model routing, prompt caching, batch APIs, self-host. R$200 vs. R$2.000.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Stack BR realista</strong> <span class="text-neutral-400">— Hotmart, PIX, Wise, NFe. Não copie stack gringa cega.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Auditoria mensal</strong> <span class="text-neutral-400">— planilha de 5 colunas, cancela o que não usou em 30 dias.</span></div></div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-blue-400 mb-2">Próximo Módulo:</h3>
+          <p class="text-neutral-300">2.5 — Precificar e vender automações: cobrar pelo valor, não pelas horas.</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="index.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Voltar à trilha</a>
+          <a href="modulo-2-5.html" class="flex-1 text-center px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 transition-colors">Próximo módulo →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="border-t border-dark-600 py-8 mt-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>PROF 2030 · Trilha 2 · Módulo 2.4 · 2026</p>
+    </div>
+  </footer>
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) { themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark'); } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => { themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden'); html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light'); });
+  </script>
+</body>
+</html>

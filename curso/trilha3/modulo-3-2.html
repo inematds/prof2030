@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 3.2 — Os 5 pilares de Goleman | PROF 2030</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } } }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .bg-purple-500\/20 { background-color: rgba(124, 58, 237, 0.12); }
+    html:not(.dark) .bg-purple-500\/10 { background-color: rgba(124, 58, 237, 0.08); }
+    html:not(.dark) .border-purple-500\/30 { border-color: rgba(124, 58, 237, 0.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185, 28, 28, 0.08); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185, 28, 28, 0.25); }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-900\/20 { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5, 150, 105, 0.25); }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(37, 99, 235, 0.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37, 99, 235, 0.25); }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🧭</span>
+            <span class="font-bold text-lg hidden sm:inline">PROF 2030</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Comunicar</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Empreender</span></a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-purple-400 bg-purple-500/10"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Liderar</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-purple-400">Início</a>
+      <span>/</span>
+      <a href="index.html" class="hover:text-purple-400">Trilha 3</a>
+      <span>/</span>
+      <span class="text-purple-400">Módulo 3.2</span>
+    </div>
+  </nav>
+  <header class="bg-gradient-to-br from-purple-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-purple-500/20 text-purple-400 text-xs font-semibold rounded-full mb-4">MÓDULO 3.2</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🪞 Os 5 pilares de Goleman na era IA</h1>
+      <p class="text-lg text-neutral-300 max-w-3xl mb-4">Autoconhecimento, autocontrole, motivação, empatia, habilidades sociais — adaptados a um mundo onde IA executa o resto. 58% mais performance comprovada.</p>
+      <blockquote class="border-l-4 border-purple-500/50 pl-4 italic text-neutral-400 max-w-3xl">"A inteligência emocional será chave para se adaptar à IA. A IA jamais vai superar as emoções humanas."<span class="block text-sm mt-1 not-italic text-neutral-500">— Daniel Goleman, NeoFeed 2025</span></blockquote>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">~45</div><div class="text-xs text-neutral-400">Minutos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">Reflexão</div><div class="text-xs text-neutral-400">Nível</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">Conceitos</div><div class="text-xs text-neutral-400">Tipo</div></div>
+      </div>
+    </div>
+  </header>
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">🪞 Autoconhecimento</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Reconhecer <strong class="text-purple-400">emoções, gatilhos e padrões em tempo real</strong>. É o filtro mais valioso do profissional moderno: você não controla o que sente, mas controla o que percebe que está sentindo. Metacognição aplicada à emoção.</p>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-purple-400 mb-4">🪞 As 4 perguntas-filtro</h3>
+        <p class="text-neutral-300 mb-4">Use sempre que sentir tensão, irritação ou euforia desproporcional:</p>
+        <ul class="space-y-2 text-neutral-300">
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>O que estou sentindo agora?</strong> Nomeie a emoção.</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Que situação acionou?</strong> Identifique o gatilho.</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Já senti isto antes?</strong> Procure o padrão.</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Que decisão isto afetaria?</strong> Mapeie o risco.</span></li>
+        </ul>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3">💡 Diário de bordo</h3>
+        <p class="text-neutral-300">3 minutos por dia. Anote: o que senti, o que aciono, como respondi. Em 30 dias você enxerga padrões que escaparam por anos. É barato, é simples, é o que mais move o ponteiro.</p>
+      </div>
+    </section>
+
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">🎚️ Autocontrole</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Regular impulso, adiar gratificação, escolher <strong class="text-purple-400">resposta em vez de reação</strong>. Skill rara num mundo hiperestimulado por notificações, dopamina barata e disputa de atenção. Autocontrole é o multiplicador silencioso da carreira.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6"><h4 class="font-bold text-emerald-400 mb-4">✓ Resposta</h4><ul class="space-y-2 text-neutral-300"><li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Pausa de 10s antes de responder</span></li><li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>"Posso voltar com isso amanhã?"</span></li><li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Escutar antes de discordar</span></li><li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Ego em segundo plano, problema em primeiro</span></li></ul></div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6"><h4 class="font-bold text-red-400 mb-4">✗ Reação</h4><ul class="space-y-2 text-neutral-300"><li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Responder e-mail enquanto está nervoso</span></li><li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Postar quando está magoado</span></li><li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Cortar a fala do outro</span></li><li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Defender ego como se fosse argumento</span></li></ul></div>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4">📊 O custo da reação</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li><strong>1 e-mail mal-respondido</strong> — semanas para reconstruir confiança</li>
+          <li><strong>1 reunião explosiva</strong> — clima do time afetado por meses</li>
+          <li><strong>1 post emocional</strong> — pode ficar online por décadas</li>
+          <li><strong>10s de pausa</strong> — custo zero, retorno enorme</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">🔥 Motivação intrínseca</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Energia que vem de <strong class="text-purple-400">propósito interno</strong>, não de bônus, like ou cargo. Daniel Pink resume em três palavras: <strong class="text-purple-400">propósito, mastery e autonomia</strong>. É o combustível que sustenta carreiras de 30 anos sem queimar.</p>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-purple-400 mb-4">🔥 Os 3 combustíveis (Pink)</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Propósito</strong> — algo maior que você. Causa, missão, contribuição.</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Mastery</strong> — prazer de ficar bom em algo difícil. Curva longa.</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Autonomia</strong> — escolher o que, quando, como, com quem.</span></li>
+        </ul>
+      </div>
+
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600"><h4 class="font-semibold mb-1">Defina o porquê</h4><p class="text-neutral-300 text-sm">Sem propósito declarado, qualquer obstáculo vira motivo de desistência.</p></div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600"><h4 class="font-semibold mb-1">Escolha 1 mastery</h4><p class="text-neutral-300 text-sm">Domine algo profundo. Ser ok em 10 coisas vale menos que ser raro em 1.</p></div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600"><h4 class="font-semibold mb-1">Compre autonomia</h4><p class="text-neutral-300 text-sm">Cada degrau de carreira deveria comprar mais autonomia, não só mais salário.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">💞 Empatia ativa</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Captar <strong class="text-purple-400">estado emocional, contexto e necessidades não-verbalizadas</strong> da outra pessoa. Não é "ser bonzinho" — é a skill mais técnica e mais lucrativa de Goleman. Líderes empáticos têm <strong class="text-purple-400">58% mais performance</strong> em times.</p>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4">📊 ROI da empatia (Goleman/HBR)</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li><strong>+58%</strong> performance em líderes com IE alta</li>
+          <li><strong>3x</strong> mais retenção em times com líder empático</li>
+          <li><strong>2x</strong> velocidade de decisão coletiva</li>
+          <li><strong>40%</strong> menos turnover voluntário</li>
+        </ul>
+      </div>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-purple-400 mb-4">💞 Pergunta de qualidade</h3>
+        <p class="text-neutral-300 mb-4">Empatia ativa não é "como você está?". É:</p>
+        <ul class="space-y-2 text-neutral-300">
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span>"O que está pesando mais agora?"</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span>"O que você gostaria que eu entendesse e ainda não falou?"</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span>"Se este projeto desse muito errado, o que você acha que seria?"</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span>"Você precisa que eu te ouça ou que eu resolva?"</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">🤝 Habilidades sociais</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Conexão, alinhamento, conversas difíceis, rede de longo prazo. <strong class="text-purple-400">Capital social</strong> é o ativo invisível mais valioso da década. Oportunidades reais circulam em redes de confiança — não em LinkedIn frio.</p>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-purple-400 mb-4">🤝 Pilares de capital social</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Generosidade primeiro</strong> — entregue valor antes de pedir</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Conversa difícil</strong> — direta e respeitosa, não "passivo-agressivo no e-mail"</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Apresentação</strong> — conectar duas pessoas que se beneficiam</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Constância</strong> — aparecer no mundo da pessoa quando ela está mal, não só quando está bem</span></li>
+        </ul>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3">💡 Regra dos 5 por mês</h3>
+        <p class="text-neutral-300">5 mensagens curtas por mês para pessoas da sua rede. Sem pedir nada. Pode ser elogio, indicação útil, lembrança de algo discutido. Em 1 ano, você nutriu 60 conexões reais. Em 5 anos, 300. Esse é o jogo.</p>
+      </div>
+    </section>
+
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">🧠 Treinando IE com IA por toda parte</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Boa notícia: <strong class="text-purple-400">IA virou ferramenta de treino emocional</strong>. Você simula conversas difíceis, role-play de feedback, jornada de gratidão estruturada. Goleman diz: o treino diário existe agora — só falta usar.</p>
+
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600"><h4 class="font-semibold mb-1">Jornada de gratidão</h4><p class="text-neutral-300 text-sm">3 itens por noite. IA pode sugerir prompts variados pra você não cair em automatismo.</p></div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600"><h4 class="font-semibold mb-1">Role-play com IA</h4><p class="text-neutral-300 text-sm">Simule a conversa difícil antes. "Aja como meu chefe difícil. Vou pedir aumento. Reaja real."</p></div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600"><h4 class="font-semibold mb-1">Feedback semanal</h4><p class="text-neutral-300 text-sm">Conte sua semana pra IA. Peça padrões emocionais que ela detecta. Espelho rápido.</p></div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">4</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600"><h4 class="font-semibold mb-1">Mentor vivo</h4><p class="text-neutral-300 text-sm">IA não substitui mentor de carne e osso. Ache 1. Encontre 1x/mês. Combinação ganha.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-purple-900/40 via-dark-800 to-dark-800 rounded-xl border border-purple-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6">🎯 Resumo do Módulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">Autoconhecimento</strong> <span class="text-neutral-400">— 4 perguntas-filtro + diário 3 min/dia</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">Autocontrole</strong> <span class="text-neutral-400">— resposta vs reação, pausa de 10s</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">Motivação intrínseca</strong> <span class="text-neutral-400">— propósito, mastery, autonomia (Pink)</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">Empatia ativa</strong> <span class="text-neutral-400">— +58% performance, perguntas de qualidade</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">Habilidades sociais</strong> <span class="text-neutral-400">— capital social, regra dos 5 por mês</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">Treino com IA</strong> <span class="text-neutral-400">— role-play, gratidão, feedback semanal</span></div></div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-purple-400 mb-2">Próximo Módulo:</h3>
+          <p class="text-neutral-300">3.3 — Caráter como vantagem competitiva</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="index.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Voltar à trilha</a>
+          <a href="modulo-3-3.html" class="flex-1 text-center px-6 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-500 transition-colors">Próximo módulo →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="border-t border-dark-600 py-8 mt-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>PROF 2030 · Trilha 3 · Módulo 3.2 · 2026</p>
+    </div>
+  </footer>
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) { themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark'); } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => { themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden'); html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light'); });
+  </script>
+</body>
+</html>

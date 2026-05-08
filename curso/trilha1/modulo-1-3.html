@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 1.3 — Engenharia de Prompt | PROF 2030</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } } }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-500\/20 { background-color: rgba(5, 150, 105, 0.12); }
+    html:not(.dark) .bg-emerald-500\/10 { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5, 150, 105, 0.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185, 28, 28, 0.08); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185, 28, 28, 0.25); }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(37, 99, 235, 0.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37, 99, 235, 0.25); }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🧭</span>
+            <span class="font-bold text-lg hidden sm:inline">PROF 2030</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-emerald-400 bg-emerald-500/10"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Comunicar</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Empreender</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Liderar</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-emerald-400">Início</a>
+      <span>/</span>
+      <a href="index.html" class="hover:text-emerald-400">Trilha 1</a>
+      <span>/</span>
+      <span class="text-emerald-400">Módulo 1.3</span>
+    </div>
+  </nav>
+
+  <header class="bg-gradient-to-br from-emerald-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-emerald-500/20 text-emerald-400 text-xs font-semibold rounded-full mb-4">MÓDULO 1.3</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">📐 Engenharia de Prompt</h1>
+      <p class="text-lg text-neutral-300 max-w-3xl mb-4">Princípios, padrões e estruturas que separam quem extrai 10× de IA de quem fica frustrado com respostas genéricas.</p>
+      <blockquote class="border-l-4 border-emerald-500/50 pl-4 italic text-neutral-400 max-w-3xl">"The definition of coding, as of today, is simply specifying... the artistry of where you are in the spectrum, this is the future of coding." <span class="block text-sm mt-1 not-italic text-neutral-500">— Jensen Huang</span></blockquote>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">~50</div><div class="text-xs text-neutral-400">Minutos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">Prático</div><div class="text-xs text-neutral-400">Nível</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">Hands-on</div><div class="text-xs text-neutral-400">Tipo</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">📐 O que é (e o que não é) um prompt</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Prompt <strong class="text-emerald-400">não é pergunta</strong>. É <strong class="text-emerald-400">especificação de tarefa</strong> — um contrato curto entre você e o modelo. Cada palavra que você coloca puxa a resposta pra um lado, e cada palavra omitida deixa o modelo "preencher os buracos" do jeito dele (que pode ser ótimo ou péssimo). Tratar prompt como Google é o erro que aprisiona 90% das pessoas no resultado medíocre. Tratar como contrato é o que abre a porta pro 10×.</p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4">🔑 Conceito-chave</h3>
+        <p class="text-neutral-300 mb-4">Um bom prompt responde implicitamente a 5 perguntas: <em>o quê</em>, <em>pra quem</em>, <em>por quê</em>, <em>em que formato</em>, <em>sob quais restrições</em>. Se faltar uma, o modelo inventa.</p>
+        <ul class="space-y-2 text-neutral-300">
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span>Pergunta solta: "como melhorar copy?" → resposta genérica</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span>Especificação: "Reescreva esta copy de landing SaaS B2B pra dor de produtividade, em 2 versões — uma direta, uma provocativa, máx. 12 palavras cada." → resposta útil</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">🎚️ Diretivo vs. Exploratório — o espectro</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Andrej Karpathy popularizou a ideia de <strong class="text-emerald-400">espectro de diretividade</strong>. Em uma ponta, você dirige o modelo passo a passo (controle alto, criatividade baixa, custo cognitivo alto). Na outra, dá objetivo amplo e deixa explorar (rápido, criativo, instável). Saber se ajustar nesse espectro pra cada tarefa é o que separa amador de profissional. Tarefa de risco alto e bem-definida pede diretivo. Brainstorm e geração de hipóteses pedem exploratório.</p>
+
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold mb-1">Modo diretivo (alto controle)</h4>
+            <p class="text-neutral-300 text-sm">"Reformate este JSON: troque snake_case por camelCase, mantenha a ordem, não invente campos." Tarefa fechada, baixa tolerância a erro.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold mb-1">Modo médio</h4>
+            <p class="text-neutral-300 text-sm">"Sugira 3 abordagens diferentes pra estruturar este pitch de 90s, listando trade-offs de cada." Pede criatividade, mas com molde.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold mb-1">Modo exploratório</h4>
+            <p class="text-neutral-300 text-sm">"Quais ângulos eu nem pensei pra abordar este problema?" IA explora, você seleciona. Bom pra desbloqueio.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">🧱 Estrutura: CRISP / RTF</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Frameworks viram <em>checklist mental</em>. Dois bons: <strong class="text-emerald-400">CRISP</strong> (Contexto, Role, Instrução, Specifics, Padrão de saída) e <strong class="text-emerald-400">RTF</strong> (Role, Task, Format) pra tarefas mais simples. Não decore — internalize. Em 2 semanas usando, você passa a estruturar qualquer prompt em segundos. Adicione <strong class="text-emerald-400">few-shot</strong> (exemplos de input→output) sempre que possível: aumenta brutalmente a aderência ao formato esperado.</p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4">🧱 CRISP em ação</h3>
+        <ul class="space-y-3 text-neutral-300">
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">▸</span><span><strong>C — Contexto:</strong> "Sou gestor de RH de empresa SaaS, 200 funcionários..."</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">▸</span><span><strong>R — Role:</strong> "Aja como consultor sênior em comunicação interna..."</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">▸</span><span><strong>I — Instrução:</strong> "Escreva e-mail anunciando mudança de política de home office..."</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">▸</span><span><strong>S — Specifics:</strong> "Tom firme mas empático, 200 palavras, 1 chamada à ação clara..."</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">▸</span><span><strong>P — Padrão:</strong> "Saída em markdown com assunto + corpo + assinatura..."</span></li>
+        </ul>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4">📊 Por que few-shot funciona</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li><strong>2-3 exemplos</strong> elevam aderência de formato em ~30-50% (medições internas Anthropic/OpenAI)</li>
+          <li><strong>1 contraexemplo</strong> ("não faça assim:") ajuda o modelo a evitar armadilhas</li>
+          <li><strong>Custo extra</strong> em tokens compensa com taxa muito maior de acerto na 1ª tentativa</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">💡 7 padrões essenciais</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Existem dezenas de padrões publicados, mas <strong class="text-emerald-400">7 cobrem 80%</strong> das tarefas reais. Domine esses primeiro: <em>persona, exemplos, decomposição, crítica, comparação, formato, revisão</em>. Combinados, formam o jogo profissional. Padrões avançados como <strong class="text-emerald-400">chain-of-thought</strong> ("pense passo a passo antes de responder") e <strong class="text-emerald-400">self-critique</strong> ("revise sua própria resposta") aumentam qualidade significativamente em tarefas complexas.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">🎭 Padrões de framing</h4>
+          <ul class="space-y-2 text-neutral-300">
+            <li><strong>Persona:</strong> "Aja como editor sênior do NYT..."</li>
+            <li><strong>Exemplos:</strong> "Aqui estão 2 inputs e seus outputs ideais..."</li>
+            <li><strong>Decomposição:</strong> "Quebre em sub-tarefas antes de resolver..."</li>
+          </ul>
+        </div>
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">🔍 Padrões de qualidade</h4>
+          <ul class="space-y-2 text-neutral-300">
+            <li><strong>Crítica:</strong> "Avalie sua resposta e melhore-a..."</li>
+            <li><strong>Comparação:</strong> "Gere 3 versões e compare..."</li>
+            <li><strong>Formato:</strong> "Saída em JSON com schema X..."</li>
+            <li><strong>Revisão:</strong> "Liste 3 erros possíveis na resposta..."</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3">💡 Dica prática</h3>
+        <p class="text-neutral-300">Pegue um prompt seu da semana e force-o a usar pelo menos 3 desses padrões juntos. Compare a saída original com a nova. A diferença normalmente é gritante.</p>
+      </div>
+    </section>
+
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">❌ Erros que matam o resultado</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Diagnosticar erros em prompt é mais rentável que aprender truque novo. Cinco mortais aparecem o tempo todo: <strong class="text-emerald-400">ambiguidade</strong> ("melhore isto" — em quê?), <strong class="text-emerald-400">falta de contexto</strong> (o modelo não sabe quem você é nem pra quem escreve), <strong class="text-emerald-400">instruções contraditórias</strong> ("seja breve e detalhado"), <strong class="text-emerald-400">"faça tudo"</strong> (10 coisas em 1 prompt e nada bem-feito), e <strong class="text-emerald-400">ausência de exemplos</strong> em tarefa de formato.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Faça</h4>
+          <ul class="space-y-2 text-neutral-300">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Defina audiência, tom e formato explicitamente</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Quebre tarefa grande em prompts menores em sequência</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Inclua 1-3 exemplos sempre que formato importa</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Use "se faltar info, pergunte antes de responder"</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Evite</h4>
+          <ul class="space-y-2 text-neutral-300">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"Melhore isto" sem dizer o critério</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>10 instruções diferentes em 1 prompt monstro</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Adjetivos vagos: "melhor", "bom", "interessante"</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Ignorar o output e culpar a IA na primeira frustração</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">🛠️ Reescrevendo seus prompts</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Teoria sem aplicação não fixa. O exercício final é simples: <strong class="text-emerald-400">pegue 3 prompts</strong> que você usou esta semana e reescreva cada um aplicando CRISP + 1 padrão dos 7 + few-shot quando relevante. Rode os dois (original e reescrito) e compare. Isso é A/B mental — você sente na pele a diferença e o aprendizado fica.</p>
+
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold mb-1">Selecione 3 prompts reais da sua semana</h4>
+            <p class="text-neutral-300 text-sm">Escolha um simples, um médio e um complexo. Salve o output original que recebeu.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold mb-1">Aplique CRISP + padrão + exemplo</h4>
+            <p class="text-neutral-300 text-sm">Dobre ou triplique o tamanho do prompt — não tenha pressa de "ser conciso" no aprendizado.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold mb-1">Compare os dois lado a lado</h4>
+            <p class="text-neutral-300 text-sm">Avalie precisão, formato, utilidade. Note o que mudou e por quê.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">4</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold mb-1">Salve as versões reescritas na sua caderneta</h4>
+            <p class="text-neutral-300 text-sm">Vira biblioteca pessoal. Reuso é onde está o ganho de tempo de verdade.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3">💡 Dica prática</h3>
+        <p class="text-neutral-300">Coloque na sua caderneta o "diff" — o que mudou e qual foi o efeito. Em 30 dias você terá um manual personalizado de prompts que funcionam pra você.</p>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-emerald-900/40 via-dark-800 to-dark-800 rounded-xl border border-emerald-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6">🎯 Resumo do Módulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">Prompt = especificação</strong> <span class="text-neutral-400">— contrato, não pergunta solta.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">Espectro de diretividade</strong> <span class="text-neutral-400">— diretivo pra controle, exploratório pra criatividade.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">CRISP + few-shot</strong> <span class="text-neutral-400">— checklist mental que você aplica em segundos.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">7 padrões cobrem 80%</strong> <span class="text-neutral-400">— persona, exemplos, decomposição, crítica, comparação, formato, revisão.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">5 erros mortais</strong> <span class="text-neutral-400">— ambiguidade, falta de contexto, contradição, "faça tudo", sem exemplos.</span></div></div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-emerald-400 mb-2">Próximo Módulo:</h3>
+          <p class="text-neutral-300">1.4 — Engenharia de Contexto</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="modulo-1-2.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Módulo anterior</a>
+          <a href="modulo-1-4.html" class="flex-1 text-center px-6 py-3 bg-emerald-600 text-white rounded-lg font-semibold hover:bg-emerald-500 transition-colors">Próximo módulo →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>PROF 2030 · Trilha 1 · Módulo 1.3 · 2026</p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) { themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark'); } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => { themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden'); html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light'); });
+  </script>
+</body>
+</html>
