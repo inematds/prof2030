@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>O Profissional do Futuro | O Tripé do Nei Maldaner</title>
+  <meta name="description" content="Curso definitivo sobre o profissional do futuro: comunicar com a máquina, empreender pela automação e liderar com humanidade. Visão de Nei Maldaner reforçada por Jensen Huang.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#FACC15',
+            dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' }
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+
+    /* Light mode - base */
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+
+    /* Light mode - cores das 3 trilhas */
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-500\/20 { background-color: rgba(5, 150, 105, 0.12); }
+    html:not(.dark) .bg-emerald-500\/10 { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5, 150, 105, 0.25); }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .group:hover .group-hover\:text-emerald-400 { color: #059669; }
+
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37, 99, 235, 0.12); }
+    html:not(.dark) .bg-blue-500\/10 { background-color: rgba(37, 99, 235, 0.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37, 99, 235, 0.25); }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37, 99, 235, 0.08); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .group:hover .group-hover\:text-blue-400 { color: #2563eb; }
+
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .bg-purple-500\/20 { background-color: rgba(124, 58, 237, 0.12); }
+    html:not(.dark) .bg-purple-500\/10 { background-color: rgba(124, 58, 237, 0.08); }
+    html:not(.dark) .border-purple-500\/30 { border-color: rgba(124, 58, 237, 0.25); }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124, 58, 237, 0.08); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .group:hover .group-hover\:text-purple-400 { color: #7c3aed; }
+
+    /* Light mode - remove gradientes */
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+
+    /* Light mode - cores especiais */
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+
+    /* Light mode - nav */
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <!-- NAVIGATION -->
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🧭</span>
+            <span class="font-bold text-lg hidden sm:inline">PROF 2030</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="curso/trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors">
+            <span class="sm:hidden">T1</span>
+            <span class="hidden sm:inline">Comunicar</span>
+          </a>
+          <a href="curso/trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors">
+            <span class="sm:hidden">T2</span>
+            <span class="hidden sm:inline">Empreender</span>
+          </a>
+          <a href="curso/trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors">
+            <span class="sm:hidden">T3</span>
+            <span class="hidden sm:inline">Liderar</span>
+          </a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="bg-gradient-to-br from-dark-800 via-dark-900 to-dark-800 py-20 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <span class="inline-block px-4 py-1.5 bg-primary/10 border border-primary/40 text-primary text-xs font-bold rounded-full mb-6 tracking-wide">
+        VISÃO DE NEI MALDANER · BASEADO NO TRIPÉ
+      </span>
+      <h1 class="text-4xl sm:text-6xl font-bold mb-6 leading-tight">
+        O Profissional do Futuro
+      </h1>
+      <p class="text-xl sm:text-2xl text-neutral-300 max-w-3xl mx-auto mb-4">
+        Quando a inteligência vira commodity,<br class="hidden sm:block">
+        o que sobra é <strong class="text-primary">você</strong>.
+      </p>
+      <p class="text-base text-neutral-400 max-w-2xl mx-auto mb-10">
+        3 trilhas · 18 módulos · 108 tópicos. Comunicar com a máquina, empreender pela automação e liderar com humanidade — o tripé que define quem vai prosperar nos próximos 10 anos.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3 justify-start sm:justify-center max-w-2xl mx-auto">
+        <a href="curso/trilha1/index.html" class="px-6 py-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg font-semibold transition-colors">
+          🤖 Começar pela Trilha 1
+        </a>
+        <a href="#tripe" class="px-6 py-3 bg-dark-700 hover:bg-dark-600 text-neutral-200 rounded-lg font-semibold transition-colors">
+          Entender o tripé primeiro
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- O TRIPÉ -->
+  <section id="tripe" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="text-center mb-12">
+      <span class="inline-block px-3 py-1 bg-primary/10 border border-primary/40 text-primary text-xs font-bold rounded-full mb-4">A BASE DO CURSO</span>
+      <h2 class="text-3xl sm:text-4xl font-bold mb-4">O Tripé do Profissional do Futuro</h2>
+      <p class="text-neutral-400 max-w-2xl mx-auto">
+        Não é uma habilidade. São três pernas que sustentam um único profissional. Tirou uma, cai. As três trilhas do curso ensinam cada perna — e como integrá-las.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Trilha 1 - Emerald -->
+      <a href="curso/trilha1/index.html" class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-emerald-500/30 p-8 transition-all">
+        <div class="w-14 h-14 rounded-full bg-emerald-500/20 flex items-center justify-center mb-5">
+          <span class="text-3xl">🤖</span>
+        </div>
+        <span class="inline-block px-2 py-0.5 bg-emerald-500/20 text-emerald-400 text-xs font-bold rounded mb-3">TRILHA 1</span>
+        <h3 class="text-2xl font-bold mb-3 group-hover:text-emerald-400 transition-colors">Comunicar com a máquina</h3>
+        <p class="text-neutral-400 text-sm mb-4">Antes que a IA te substitua. AI literacy, prompt e context engineering, dialogar com agentes — a nova alfabetização do século XXI.</p>
+        <div class="text-xs text-neutral-500 mb-2">6 módulos · 36 tópicos · ~4h</div>
+        <div class="text-emerald-400 text-sm font-semibold group-hover:translate-x-1 transition-transform inline-block">Começar →</div>
+      </a>
+
+      <!-- Trilha 2 - Blue -->
+      <a href="curso/trilha2/index.html" class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-blue-500/30 p-8 transition-all">
+        <div class="w-14 h-14 rounded-full bg-blue-500/20 flex items-center justify-center mb-5">
+          <span class="text-3xl">🚀</span>
+        </div>
+        <span class="inline-block px-2 py-0.5 bg-blue-500/20 text-blue-400 text-xs font-bold rounded mb-3">TRILHA 2</span>
+        <h3 class="text-2xl font-bold mb-3 group-hover:text-blue-400 transition-colors">Empreender pela automação</h3>
+        <p class="text-neutral-400 text-sm mb-4">O profissional que o mundo vai pagar caro pra ter. Alavancagem com IA, n8n, casos de solopreneurs, precificar e vender automações.</p>
+        <div class="text-xs text-neutral-500 mb-2">6 módulos · 36 tópicos · ~5h</div>
+        <div class="text-blue-400 text-sm font-semibold group-hover:translate-x-1 transition-transform inline-block">Começar →</div>
+      </a>
+
+      <!-- Trilha 3 - Purple -->
+      <a href="curso/trilha3/index.html" class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-purple-500/30 p-8 transition-all">
+        <div class="w-14 h-14 rounded-full bg-purple-500/20 flex items-center justify-center mb-5">
+          <span class="text-3xl">🌱</span>
+        </div>
+        <span class="inline-block px-2 py-0.5 bg-purple-500/20 text-purple-400 text-xs font-bold rounded mb-3">TRILHA 3</span>
+        <h3 class="text-2xl font-bold mb-3 group-hover:text-purple-400 transition-colors">Liderar com humanidade</h3>
+        <p class="text-neutral-400 text-sm mb-4">Forme pessoas insubstituíveis (começando por você). Caráter, empatia, antecipação, formação de times e legado humano.</p>
+        <div class="text-xs text-neutral-500 mb-2">6 módulos · 36 tópicos · ~4h</div>
+        <div class="text-purple-400 text-sm font-semibold group-hover:translate-x-1 transition-transform inline-block">Começar →</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- POR QUE ESSE CURSO -->
+  <section class="bg-dark-800/40 border-y border-dark-600 py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">Por que esse curso, agora</h2>
+        <p class="text-neutral-400 max-w-2xl mx-auto">3 dados que mudam o jogo do trabalho no Brasil em 2026.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <div class="text-4xl font-bold text-emerald-400 mb-2">76%</div>
+          <p class="text-neutral-300 text-sm">dos profissionais brasileiros temem ser substituídos pela IA. <span class="text-neutral-500">(Page/Exame, 2024)</span></p>
+        </div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <div class="text-4xl font-bold text-blue-400 mb-2">19k → 73k</div>
+          <p class="text-neutral-300 text-sm">crescimento das vagas de IA no Brasil em 3 anos. Salários crescem 2× mais rápido que outras áreas.</p>
+        </div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <div class="text-4xl font-bold text-purple-400 mb-2">Sobre-humano</div>
+          <p class="text-neutral-300 text-sm">é como Jensen Huang chama caráter, empatia e generosidade num mundo onde inteligência virou commodity.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FRASE-ÂNCORA -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+    <blockquote class="text-2xl sm:text-3xl font-semibold text-neutral-200 leading-relaxed mb-6">
+      "Inteligência vai ser uma commodity. Caráter, humanidade, compaixão, generosidade — esses são os <span class="text-primary">poderes sobre-humanos</span>."
+    </blockquote>
+    <p class="text-neutral-400 text-sm">
+      — Jensen Huang, CEO da NVIDIA · Lex Fridman Podcast #494
+    </p>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-dark-600">
+    <h2 class="text-3xl font-bold mb-10 text-center">Como o curso funciona</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+        <div class="w-10 h-10 rounded-full bg-primary/10 border border-primary/40 flex items-center justify-center text-primary font-bold mb-3">1</div>
+        <h3 class="font-bold mb-2">Escolha sua porta de entrada</h3>
+        <p class="text-sm text-neutral-400">Cada trilha resolve uma dor diferente. Comece pela que mais te aperta hoje.</p>
+      </div>
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+        <div class="w-10 h-10 rounded-full bg-primary/10 border border-primary/40 flex items-center justify-center text-primary font-bold mb-3">2</div>
+        <h3 class="font-bold mb-2">6 módulos por trilha</h3>
+        <p class="text-sm text-neutral-400">Despertar → Fundamento → Prática → Aplicação → Síntese → Projeto.</p>
+      </div>
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+        <div class="w-10 h-10 rounded-full bg-primary/10 border border-primary/40 flex items-center justify-center text-primary font-bold mb-3">3</div>
+        <h3 class="font-bold mb-2">6 tópicos por módulo</h3>
+        <p class="text-sm text-neutral-400">Cada tópico com "O que é / Por que aprender / Conceitos-chave".</p>
+      </div>
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+        <div class="w-10 h-10 rounded-full bg-primary/10 border border-primary/40 flex items-center justify-center text-primary font-bold mb-3">4</div>
+        <h3 class="font-bold mb-2">Projeto final em cada trilha</h3>
+        <p class="text-sm text-neutral-400">Você sai com algo concreto: agente, automação ou manifesto pessoal.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+    <h2 class="text-3xl font-bold mb-4">Por onde começar?</h2>
+    <p class="text-neutral-400 mb-8">Não tem ordem certa. Comece pela trilha que tem o gatilho mais forte pra você hoje.</p>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <a href="curso/trilha1/index.html" class="bg-emerald-600/20 border border-emerald-500/30 hover:bg-emerald-600/30 rounded-xl p-6 text-left transition-colors">
+        <div class="text-emerald-400 text-xs font-bold mb-2">SE VOCÊ SENTE</div>
+        <p class="font-semibold mb-3">"Vou ser substituído"</p>
+        <div class="text-emerald-400 text-sm">→ Trilha 1</div>
+      </a>
+      <a href="curso/trilha2/index.html" class="bg-blue-600/20 border border-blue-500/30 hover:bg-blue-600/30 rounded-xl p-6 text-left transition-colors">
+        <div class="text-blue-400 text-xs font-bold mb-2">SE VOCÊ QUER</div>
+        <p class="font-semibold mb-3">"Construir algo meu"</p>
+        <div class="text-blue-400 text-sm">→ Trilha 2</div>
+      </a>
+      <a href="curso/trilha3/index.html" class="bg-purple-600/20 border border-purple-500/30 hover:bg-purple-600/30 rounded-xl p-6 text-left transition-colors">
+        <div class="text-purple-400 text-xs font-bold mb-2">SE VOCÊ SE PREOCUPA</div>
+        <p class="font-semibold mb-3">"Como preparar quem eu amo"</p>
+        <div class="text-purple-400 text-sm">→ Trilha 3</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-dark-600 py-8 mt-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p class="mb-2">PROF 2030 · Curso oficial de Nei Maldaner · 2026</p>
+      <p>Parte do ecossistema <a href="https://inema.club" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a> · Comunidade <a href="https://inema.vip" class="text-sky-400 hover:text-sky-300">INEMA.VIP</a></p>
+    </div>
+  </footer>
+
+  <script>
+    // Theme toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) {
+      themeToggleDarkIcon.classList.remove('hidden');
+      html.classList.remove('dark');
+    } else {
+      themeToggleLightIcon.classList.remove('hidden');
+    }
+
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden');
+      themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+
+</body>
+</html>
