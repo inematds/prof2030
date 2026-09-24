@@ -37,3 +37,11 @@ Curso HTML estático no padrão **INEMA.CLUB** — funciona offline, sem build, 
 ---
 
 PROF 2030 · 2026 · Parte do ecossistema INEMA
+
+<!-- inema-backlink:v1 -->
+## Mais no INEMA.CLUB
+
+- [Ficha completa deste curso](https://www.inema.club/cursos/89-prof2030-o-profissional-do-futuro/)
+- [Guia: como aprender inteligência artificial](https://www.inema.club/aprender-inteligencia-artificial/)
+- [Todos os cursos](https://www.inema.club/cursos/)
+<!-- /inema-backlink:v1 -->
